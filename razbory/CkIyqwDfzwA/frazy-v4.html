@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Разбор интро — версия 4</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 52px 40px 120px;
+    background: #fff; color: #111;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1560px; margin: 0 auto; }
+  h1 { font-size: 31px; line-height: 1.15; margin: 0 0 12px; font-weight: 700; }
+  .lead { color: #555; font-size: 15px; line-height: 1.55; max-width: 940px; margin: 0 0 28px; }
+  .lead code { background: #f0f0f0; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+
+  h2.sec {
+    font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: #888;
+    font-weight: 700; margin: 0 0 16px;
+  }
+
+  /* источник */
+  .source { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start;
+    background: #f7f7f7; border: 1px solid #e2e2e2; border-radius: 12px;
+    padding: 22px 24px; margin: 0 0 26px; }
+  .source .vid { flex: 0 0 620px; max-width: 100%; }
+  .source video { width: 100%; display: block; border-radius: 8px; background: #000; }
+  .source .side { flex: 1 1 340px; min-width: 300px; }
+  .source h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em;
+               color: #888; margin: 0 0 10px; font-weight: 700; }
+  .source p { margin: 0 0 14px; font-size: 14px; line-height: 1.55; color: #444; }
+  .source a.yt { display: inline-block; background: #111; color: #fff; text-decoration: none;
+    font-size: 14px; font-weight: 600; padding: 10px 18px; border-radius: 8px; margin-bottom: 16px; }
+  .source a.yt:hover { background: #333; }
+  .source audio { width: 100%; }
+  .source .note { font-size: 12.5px; color: #777; line-height: 1.5; margin-top: 14px; }
+
+  /* паспорт */
+  .pass { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 46px; }
+  .pass .m { flex: 1 1 150px; border: 1px solid #e2e2e2; border-radius: 10px; padding: 14px 16px; }
+  .pass .m .v { font-size: 26px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .pass .m .k { font-size: 12px; color: #888; margin-top: 5px; line-height: 1.35; }
+  .pass .m .n { font-size: 11.5px; color: #b8360f; margin-top: 6px; line-height: 1.35; }
+
+  /* эссенция */
+  .ess { border: 2px solid #111; border-radius: 12px; padding: 26px 28px 24px; margin: 0 0 22px; }
+  .ess .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: .09em;
+                 color: #b8360f; font-weight: 700; margin-bottom: 14px; }
+  .ess h3 { font-size: 27px; line-height: 1.25; margin: 0 0 18px; font-weight: 700; }
+  .ess ul { margin: 0 0 18px; padding-left: 0; list-style: none; }
+  .ess li { font-size: 17px; line-height: 1.5; margin-bottom: 11px; padding-left: 26px; position: relative; }
+  .ess li:before { content: "—"; position: absolute; left: 0; color: #b8360f; font-weight: 700; }
+  .ess .cta { font-size: 17px; line-height: 1.5; border-top: 1px solid #e2e2e2; padding-top: 16px; margin: 0; font-weight: 500; }
+  .esshint { font-size: 13px; color: #777; line-height: 1.55; max-width: 940px; margin: 0 0 50px; }
+
+  /* блоки */
+  .block { padding: 32px 0 38px; border-top: 1px solid #e2e2e2; }
+  .block:first-of-type { border-top: 2px solid #111; }
+  .meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .tc { font-size: 12px; font-weight: 700; letter-spacing: .07em; color: #999; font-variant-numeric: tabular-nums; }
+  .tc a { color: #b8360f; text-decoration: none; border-bottom: 1px dotted #d8a08c; }
+  .tc a:hover { color: #8c260a; }
+  .role { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; font-weight: 700;
+          color: #b8360f; background: #fdece5; border: 1px solid #f2c4b0; border-radius: 4px; padding: 3px 9px; }
+  .tempo { font-size: 11.5px; color: #999; font-variant-numeric: tabular-nums; }
+  .tempo.fast { color: #b8360f; font-weight: 600; }
+  .tempo.slow { color: #1a6b4a; font-weight: 600; }
+  .phrase { font-size: 24px; line-height: 1.42; font-weight: 500; color: #000; max-width: 1150px; margin: 0 0 26px; }
+  .strip { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  .shot { flex: 1 1 0; min-width: 340px; max-width: 740px; }
+  .shot img { width: 100%; display: block; border-radius: 10px; border: 1px solid #d8d8d8; }
+  .shot .t { font-size: 11px; color: #a0a0a0; font-variant-numeric: tabular-nums; margin-top: 6px; text-align: right; }
+  .solo .shot { max-width: 900px; }
+
+  /* цепочка */
+  .chain { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 46px; }
+  .chain .s { border: 1px solid #ddd; border-radius: 20px; padding: 7px 15px; font-size: 13.5px; background: #fafafa; }
+  .chain .ar { color: #bbb; font-size: 15px; }
+
+  /* приёмы */
+  .takeaway { border-top: 2px solid #111; padding-top: 34px; margin-top: 12px; }
+  .cards { display: flex; flex-wrap: wrap; gap: 16px; }
+  .card { flex: 1 1 320px; border: 1px solid #e2e2e2; border-radius: 10px; padding: 18px 20px; }
+  .card h4 { margin: 0 0 8px; font-size: 16px; line-height: 1.3; }
+  .card p { margin: 0; font-size: 14px; line-height: 1.55; color: #555; }
+  .card .tcref { font-size: 11.5px; color: #b8360f; font-variant-numeric: tabular-nums; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Разбор интро: русскоязычный ролик про Claude Code</h1>
+<p class="lead">Интро — первый блок ролика, где автор не объясняет тему, а продаёт досмотр. Разбирается только он: <b>0:00–0:57</b>. Граница определена по обрыву плотности монтажа (в интро 20 склеек за минуту, в следующей минуте — ноль) и по слову-переключателю «Поехали» на 0:56.9. Источник — YouTube <code>CkIyqwDfzwA</code>.</p>
+
+<div class="source">
+  <div class="vid"><video id="v" controls preload="metadata" src="v3media/fragment.mp4"></video></div>
+  <div class="side">
+    <h2>Источник</h2>
+    <a class="yt" href="https://youtu.be/CkIyqwDfzwA" target="_blank" rel="noopener">Открыть на YouTube ↗</a>
+    <p>Слева — разбираемый фрагмент. Таймкоды в разборе кликабельны: нажми, и видео перемотается на это место.</p>
+    <h2 style="margin-top:18px">Только звук</h2>
+    <audio controls preload="metadata" src="v3media/fragment.mp3"></audio>
+    <p class="note">Речь дословно из авто-субтитров канала, почищенных от дублей. Кадры вырезаны из видео в момент, когда экранная графика доехала полностью.</p>
+  </div>
+</div>
+
+<h2 class="sec">Паспорт интро</h2>
+<div class="pass">
+  <div class="m"><div class="v">57 с</div><div class="k">длина интро</div><div class="n">короткое: типичное — 60–90 с</div></div>
+  <div class="m"><div class="v">20</div><div class="k">склеек</div><div class="n">средний план 2,8 с</div></div>
+  <div class="m"><div class="v">229</div><div class="k">слов в минуту</div><div class="n">очень быстро: норма речи ~130</div></div>
+  <div class="m"><div class="v">218</div><div class="k">слов всего</div><div class="n">ни одной паузы дольше секунды</div></div>
+  <div class="m"><div class="v">9</div><div class="k">законченных мыслей</div><div class="n">по 24 слова, ~6 с каждая</div></div>
+  <div class="m"><div class="v">14</div><div class="k">смысловых сцен</div><div class="n">картинка меняется чаще, чем мысль</div></div>
+</div>
+
+<h2 class="sec">Если бы это интро было постом</h2>
+<div class="ess">
+  <div class="kicker">Эссенция — та же продажа, сжатая в текст</div>
+  <h3>Claude стал отвечать полотном. Чинится двумя настройками — обе от самих Anthropic.</h3>
+  <ul>
+    <li><b>Боль.</b> Простой вопрос — три экрана текста в ответ. Нужная строка спрятана где-то в середине.</li>
+    <li><b>Это не твоя вина.</b> Ты просишь ровно так же, как раньше. Он теперь такой у всех — в Твиттере полно тех же жалоб.</li>
+    <li><b>Решение не от блогеров.</b> Anthropic сами написали, как это чинить и куда именно класть правила, чтобы модель их держала.</li>
+    <li><b>Плюс две команды,</b> о которых почти никто не говорит.</li>
+    <li><b>Результат:</b> три строки вместо трёх экранов. Ответы короче, лимит тратится медленнее, и наконец понятно, что он говорит.</li>
+  </ul>
+  <p class="cta"><b>Забрать готовым:</b> весь набор — стиль ответа и две команды — лежит в Telegram, ссылка в описании и в закрепе.</p>
+</div>
+<p class="esshint">Это не пересказ ролика. Это его интро, переписанное как короткий продающий пост: та же боль, то же снятие вины, то же обещание и тот же подарок — только текстом. Нужно, чтобы сравнивать заходы разных авторов на одном языке и видеть скелет предложения без монтажа и интонации.</p>
+
+<h2 class="sec">Цепочка ходов</h2>
+<div class="chain">
+  <span class="s">Боль</span><span class="ar">→</span>
+  <span class="s">Показ боли живьём</span><span class="ar">→</span>
+  <span class="s">«Не ты один»</span><span class="ar">→</span>
+  <span class="s">Снятие вины</span><span class="ar">→</span>
+  <span class="s">Авторитет источника</span><span class="ar">→</span>
+  <span class="s">Приманка</span><span class="ar">→</span>
+  <span class="s">Результат до/после</span><span class="ar">→</span>
+  <span class="s">Что будет в ролике</span><span class="ar">→</span>
+  <span class="s">Просьба досмотреть + подарок</span>
+</div>
+
+<div class="block">
+  <div class="meta"><span class="tc"><a href="#" data-t="0">0:00 — 0:07</a></span><span class="role">Боль</span><span class="tempo">197 слов/мин</span></div>
+  <p class="phrase">«У Клода последних недель есть одна большая проблема. Он отвечает полотном, оговаривается на каждом шагу и пишет тебе слова, которых ты не просил.»</p>
+  <div class="strip">
+    <div class="shot"><img src="v2/s00.8.jpg" alt=""><div class="t">0:00.8</div></div>
+    <div class="shot"><img src="v2/s05.2.jpg" alt=""><div class="t">0:05.2</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta"><span class="tc"><a href="#" data-t="7">0:07 — 0:15</a></span><span class="role">Показ боли живьём</span><span class="tempo">210 слов/мин</span></div>
+  <p class="phrase">«Выглядит это примерно вот так. Обычный простой вопрос в новом диалоге внутри нашего проекта, и он тебе выдаёт три экрана текста, где нужная строка находится где-то в середине.»</p>
+  <div class="strip">
+    <div class="shot"><img src="v2/s09.5.jpg" alt=""><div class="t">0:09.5</div></div>
+    <div class="shot"><img src="v2/s14.8.jpg" alt=""><div class="t">0:14.8</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta"><span class="tc"><a href="#" data-t="15">0:15 — 0:20</a></span><span class="role">«Не ты один»</span><span class="tempo">216 слов/мин</span></div>
+  <p class="phrase">«И заметил, это не я один. Вот куча постов в Твиттере, где люди прямо описывают эту конкретную проблему.»</p>
+  <div class="strip solo"><div class="shot"><img src="v2/s19.3.jpg" alt=""><div class="t">0:19.3</div></div></div>
+</div>
+
+<div class="block">
+  <div class="meta"><span class="tc"><a href="#" data-t="20">0:20 — 0:23</a></span><span class="role">Снятие вины</span><span class="tempo fast">320 слов/мин — разгон</span></div>
+  <p class="phrase">«И дело не в том, что ты как-то не так просишь. Он теперь такой у всех.»</p>
+  <div class="strip solo"><div class="shot"><img src="v2/s22.8.jpg" alt=""><div class="t">0:22.8</div></div></div>
+</div>
+
+<div class="block">
+  <div class="meta"><span class="tc"><a href="#" data-t="23">0:23 — 0:28</a></span><span class="role">Авторитет источника</span><span class="tempo fast">336 слов/мин — пик</span></div>
+  <p class="phrase">«Но есть и хорошая новость, потому что чинить это придумали не блогеры, а сами Антропик. И там же они объяснили, куда конкретно класть правила, чтобы модель их держала.»</p>
+  <div class="strip solo"><div class="shot"><img src="v2/s27.3.jpg" alt=""><div class="t">0:27.3</div></div></div>
+</div>
+
+<div class="block">
+  <div class="meta"><span class="tc"><a href="#" data-t="28">0:28 — 0:32</a></span><span class="role">Приманка</span><span class="tempo slow">150 слов/мин — тормозит вдвое</span></div>
+  <p class="phrase">«Плюс есть две команды, о которых почти никто не говорит.»</p>
+  <div class="strip solo"><div class="shot"><img src="v2/s30.5.jpg" alt=""><div class="t">0:30.5</div></div></div>
+</div>
+
+<div class="block">
+  <div class="meta"><span class="tc"><a href="#" data-t="32">0:32 — 0:42</a></span><span class="role">Результат до / после</span><span class="tempo">198 слов/мин</span></div>
+  <p class="phrase">«И вот тот же вопрос после двух изменений. Три строки и первое, что чинить. Ответы короче, лимит тратится медленнее. Читать по горизонтали больше не надо. И, наконец, понятно, что конкретно он вообще говорит.»</p>
+  <div class="strip">
+    <div class="shot"><img src="v2/s35.0.jpg" alt=""><div class="t">0:35.0</div></div>
+    <div class="shot"><img src="v2/s41.9.jpg" alt=""><div class="t">0:41.9</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta"><span class="tc"><a href="#" data-t="42">0:42 — 0:50</a></span><span class="role">Что будет в ролике</span><span class="tempo">255 слов/мин</span></div>
+  <p class="phrase">«И обе этих фичи поставлю с нуля прямо на экране. Одну настройку, чтобы он так больше не разговаривал вообще. И две команды на случай, когда длинный ответ нужен, а сжать надо только этот один.»</p>
+  <div class="strip">
+    <div class="shot"><img src="v2/s43.5.jpg" alt=""><div class="t">0:43.5</div></div>
+    <div class="shot"><img src="v2/s46.5.jpg" alt=""><div class="t">0:46.5</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta"><span class="tc"><a href="#" data-t="50">0:50 — 0:57</a></span><span class="role">Просьба досмотреть + подарок</span><span class="tempo">240 слов/мин</span></div>
+  <p class="phrase">«Досмотри до конца. Я покажу тебе, как забрать весь этот набор готовым. Он лежит у меня в Telegram, ссылка будет в описании и в первом закреплённом комментарии. Поехали.»</p>
+  <div class="strip solo"><div class="shot"><img src="v2/s56.5.jpg" alt=""><div class="t">0:56.5</div></div></div>
+</div>
+
+<div class="takeaway">
+  <h2 class="sec">Что можно забрать себе</h2>
+  <div class="cards">
+    <div class="card">
+      <h4>Показать проблему объёмом, а не смыслом</h4>
+      <p>Экран заливается нечитаемым текстом, и в середине подсвечивается одна строка: «вот эта была нужна». Зритель чувствует боль за секунду, читать ничего не надо.</p>
+      <div class="tcref">0:12 — 0:15</div>
+    </div>
+    <div class="card">
+      <h4>Замкнуть интро на исходную картинку</h4>
+      <p>Тот же слайд с вопросом, что был в начале, показывается в конце — но с коротким ответом. Разница видна глазами, её не нужно доказывать словами.</p>
+      <div class="tcref">0:12 → 0:39</div>
+    </div>
+    <div class="card">
+      <h4>Снять вину со зрителя</h4>
+      <p>«Дело не в том, что ты не так просишь» — отдельный ход между болью и решением. Зритель перестаёт защищаться и готов слушать.</p>
+      <div class="tcref">0:20 — 0:23</div>
+    </div>
+    <div class="card">
+      <h4>Притормозить на приманке</h4>
+      <p>Темп речи весь ролик 200–336 слов в минуту, и ровно на фразе «о которых почти никто не говорит» падает до 150. Замедление работает как подчёркивание.</p>
+      <div class="tcref">0:28 — 0:32</div>
+    </div>
+    <div class="card">
+      <h4>Экранный текст = произносимые слова</h4>
+      <p>Говорит «отвечает полотном» — на экране «ОТВЕЧАЕТ ПОЛОТНОМ». Говорит «куда класть правила» — подсвечивается строка документации с этим же смыслом. Никакой декоративной графики.</p>
+      <div class="tcref">весь блок</div>
+    </div>
+    <div class="card">
+      <h4>Подарок вместо призыва подписаться</h4>
+      <p>Просьба досмотреть подкреплена конкретным набором файлов в Telegram. Не «ставь лайк», а «заберёшь готовым» — и тут же перечислено, что именно.</p>
+      <div class="tcref">0:50 — 0:57</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var v = document.getElementById('v');
+  document.querySelectorAll('.tc a[data-t]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      v.currentTime = parseFloat(a.dataset.t);
+      v.play();
+      v.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+</script>
+
+</div>
+</body>
+</html>

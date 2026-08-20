@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Первые 60 секунд — версия 2</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 52px 40px 120px;
+    background: #ffffff;
+    color: #111;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1560px; margin: 0 auto; }
+
+  h1 { font-size: 31px; line-height: 1.15; margin: 0 0 12px; font-weight: 700; }
+  .lead { color: #555; font-size: 15px; line-height: 1.55; max-width: 940px; margin: 0 0 50px; }
+  .lead code { background: #f0f0f0; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+
+  .block { padding: 34px 0 40px; border-top: 1px solid #e2e2e2; }
+  .block:first-of-type { border-top: 2px solid #111; }
+
+  .tc { font-size: 12px; font-weight: 700; letter-spacing: .07em; color: #999;
+        font-variant-numeric: tabular-nums; margin-bottom: 12px; }
+  .phrase { font-size: 24px; line-height: 1.42; font-weight: 500; color: #000;
+            max-width: 1150px; margin: 0 0 26px; }
+
+  .strip { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  .shot { flex: 1 1 0; min-width: 340px; max-width: 740px; }
+  .shot img { width: 100%; display: block; border-radius: 10px; border: 1px solid #d8d8d8; }
+  .shot .t { font-size: 11px; color: #a0a0a0; font-variant-numeric: tabular-nums;
+             margin-top: 6px; text-align: right; }
+  .solo .shot { max-width: 900px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Первые 60 секунд: мысль → ключевые кадры (версия 2)</h1>
+<p class="lead">Ролик — YouTube <code>CkIyqwDfzwA</code>, русскоязычный обзор про Claude Code. Речь дословно из авто-субтитров канала, собранная в законченные мысли. Под каждой мыслью — только опорные кадры: по одному на каждую смысловую сцену, взятые в тот момент, когда графика на экране доехала полностью. Кадры крупные — надписи читаются. Всего в первой минуте 21 монтажная склейка, но смысловых сцен — 18.</p>
+
+<div class="block">
+  <div class="tc">0:00 — 0:07</div>
+  <p class="phrase">«У Клода последних недель есть одна большая проблема. Он отвечает полотном, оговаривается на каждом шагу и пишет тебе слова, которых ты не просил.»</p>
+  <div class="strip">
+    <div class="shot"><img src="v2/s00.8.jpg" alt=""><div class="t">0:00.8</div></div>
+    <div class="shot"><img src="v2/s05.2.jpg" alt=""><div class="t">0:05.2</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="tc">0:07 — 0:15</div>
+  <p class="phrase">«Выглядит это примерно вот так. Обычный простой вопрос в новом диалоге внутри нашего проекта, и он тебе выдаёт три экрана текста, где нужная строка находится где-то в середине.»</p>
+  <div class="strip">
+    <div class="shot"><img src="v2/s09.5.jpg" alt=""><div class="t">0:09.5</div></div>
+    <div class="shot"><img src="v2/s14.8.jpg" alt=""><div class="t">0:14.8</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="tc">0:15 — 0:20</div>
+  <p class="phrase">«И заметил, это не я один. Вот куча постов в Твиттере, где люди прямо описывают эту конкретную проблему.»</p>
+  <div class="strip solo">
+    <div class="shot"><img src="v2/s19.3.jpg" alt=""><div class="t">0:19.3</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="tc">0:20 — 0:23</div>
+  <p class="phrase">«И дело не в том, что ты как-то не так просишь. Он теперь такой у всех.»</p>
+  <div class="strip solo">
+    <div class="shot"><img src="v2/s22.8.jpg" alt=""><div class="t">0:22.8</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="tc">0:23 — 0:28</div>
+  <p class="phrase">«Но есть и хорошая новость, потому что чинить это придумали не блогеры, а сами Антропик. И там же они объяснили, куда конкретно класть правила, чтобы модель их держала.»</p>
+  <div class="strip solo">
+    <div class="shot"><img src="v2/s27.3.jpg" alt=""><div class="t">0:27.3</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="tc">0:28 — 0:32</div>
+  <p class="phrase">«Плюс есть две команды, о которых почти никто не говорит.»</p>
+  <div class="strip solo">
+    <div class="shot"><img src="v2/s30.5.jpg" alt=""><div class="t">0:30.5</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="tc">0:32 — 0:42</div>
+  <p class="phrase">«И вот тот же вопрос после двух изменений. Три строки и первое, что чинить. Ответы короче, лимит тратится медленнее. Читать по горизонтали больше не надо. И, наконец, понятно, что конкретно он вообще говорит.»</p>
+  <div class="strip">
+    <div class="shot"><img src="v2/s35.0.jpg" alt=""><div class="t">0:35.0</div></div>
+    <div class="shot"><img src="v2/s41.9.jpg" alt=""><div class="t">0:41.9</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="tc">0:42 — 0:50</div>
+  <p class="phrase">«И обе этих фичи поставлю с нуля прямо на экране. Одну настройку, чтобы он так больше не разговаривал вообще. И две команды на случай, когда длинный ответ нужен, а сжать надо только этот один.»</p>
+  <div class="strip">
+    <div class="shot"><img src="v2/s43.5.jpg" alt=""><div class="t">0:43.5</div></div>
+    <div class="shot"><img src="v2/s46.5.jpg" alt=""><div class="t">0:46.5</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="tc">0:50 — 0:57</div>
+  <p class="phrase">«Досмотри до конца. Я покажу тебе, как забрать весь этот набор готовым. Он лежит у меня в Telegram, ссылка будет в описании и в первом закреплённом комментарии. Поехали.»</p>
+  <div class="strip solo">
+    <div class="shot"><img src="v2/s56.5.jpg" alt=""><div class="t">0:56.5</div></div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="tc">0:57 — 1:00</div>
+  <p class="phrase">«И давайте сейчас это разберём на текущем примере. Возможно, это не самый плохой из всех, но тем не менее здесь тоже есть, что разобрать.»</p>
+  <div class="strip solo">
+    <div class="shot"><img src="v2/s59.8.jpg" alt=""><div class="t">0:59.8</div></div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

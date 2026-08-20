@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Библиотека разборов интро</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:52px 40px 120px; background:#fff; color:#111;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1600px; margin:0 auto; }
+  h1 { font-size:31px; line-height:1.15; margin:0 0 12px; font-weight:700; }
+  .lead { color:#555; font-size:15px; line-height:1.55; max-width:980px; margin:0 0 40px; }
+  h2.sec { font-size:13px; text-transform:uppercase; letter-spacing:.1em; color:#888;
+           font-weight:700; margin:48px 0 16px; }
+  h2.sec:first-of-type { margin-top:0; }
+
+  table { border-collapse:collapse; width:100%; font-size:14px; table-layout:fixed; }
+  col.c-title { width:24%; } col.c-theme { width:10%; }
+  col.c-n { width:7.5%; } col.c-sw { width:18%; }
+  thead th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+    color:#777; font-weight:700; padding:0 12px 9px; border-bottom:2px solid #111;
+    position:sticky; top:0; background:#fff; z-index:2; cursor:pointer; user-select:none; }
+  thead th:hover { color:#b8360f; }
+  thead th.num { text-align:right; }
+  tbody tr { border-bottom:1px solid #e4e4e4; }
+  tbody tr:nth-child(even) { background:#fafafa; }
+  td { padding:14px 12px; vertical-align:top; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.t a { color:#111; text-decoration:none; font-weight:600; border-bottom:1px solid #ccc; }
+  td.t a:hover { color:#b8360f; border-color:#e8b9a8; }
+  td.t .meta { color:#888; font-size:12.5px; margin-top:4px; }
+  td.t .yt { color:#b8360f; font-size:12px; text-decoration:none; }
+  .hi { color:#b8360f; font-weight:700; }
+
+  .chains { display:flex; flex-direction:column; gap:22px; }
+  .crow { border:1px solid #e2e2e2; border-radius:10px; padding:16px 18px; }
+  .crow h3 { margin:0 0 4px; font-size:15px; }
+  .crow h3 a { color:#111; text-decoration:none; border-bottom:1px solid #ccc; }
+  .crow .sub { font-size:12px; color:#999; margin-bottom:12px; font-variant-numeric:tabular-nums; }
+  .chain { display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+  .chain .s { border:1px solid #ddd; border-radius:18px; padding:5px 12px; font-size:12.5px; background:#fafafa; }
+  .chain .ar { color:#c4c4c4; font-size:13px; }
+  .chain .s.common { background:#fdece5; border-color:#f2c4b0; }
+
+  .notes { display:flex; flex-wrap:wrap; gap:14px; }
+  .note { flex:1 1 300px; border:1px solid #e2e2e2; border-radius:10px; padding:16px 18px; }
+  .note h4 { margin:0 0 7px; font-size:14px; }
+  .note p { margin:0; font-size:13.5px; line-height:1.55; color:#555; }
+  .hint { font-size:13px; color:#777; line-height:1.55; max-width:980px; margin:14px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Библиотека разборов интро</h1>
+<p class="lead">Интро — первый блок YouTube-ролика, где автор не объясняет тему, а продаёт досмотр. Здесь собраны все разобранные заходы: цифры для сравнения, цепочки ходов и ссылки на полные разборы с кадрами и видео. Заголовки колонок кликабельны — таблица сортируется.</p>
+
+<h2 class="sec">Сравнение</h2>
+<table id="t">
+<colgroup>
+  <col class="c-title"><col class="c-theme">
+  <col class="c-n"><col class="c-n"><col class="c-n"><col class="c-n">
+  <col class="c-n"><col class="c-n"><col class="c-n"><col class="c-sw">
+</colgroup>
+<thead><tr>
+  <th data-k="title">Ролик</th>
+  <th data-k="theme">Тема</th>
+  <th class="num" data-k="intro_len_s">Интро</th>
+  <th class="num" data-k="cuts">Склеек</th>
+  <th class="num" data-k="avg_plan_s">Средний план</th>
+  <th class="num" data-k="wpm">Слов/мин</th>
+  <th class="num" data-k="words">Слов</th>
+  <th class="num" data-k="thoughts">Мыслей</th>
+  <th class="num" data-k="scenes">Сцен</th>
+  <th data-k="switch">Переключатель</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+<p class="hint">Норма разговорной русской речи — около 130 слов в минуту; всё, что выше, звучит как разгон. Типичное интро — 60–90 секунд. Средний план короче 3 секунд означает очень плотный монтаж.</p>
+
+<h2 class="sec">Цепочки ходов</h2>
+<div class="chains" id="ch"></div>
+<p class="hint">Оранжевым подсвечены ходы, которые встречаются больше чем в одном ролике — это общий словарь приёмов.</p>
+
+<h2 class="sec">Чем каждый отличается</h2>
+<div class="notes" id="nt"></div>
+
+</div>
+
+<script>
+fetch('data.json').then(r=>r.json()).then(D=>{
+  const fmt = s => s>=60 ? Math.floor(s/60)+':'+String(s%60).padStart(2,'0') : s+' с';
+
+  // ---- таблица
+  const tb = document.querySelector('#t tbody');
+  let dir = {};
+  function draw(rows){
+    tb.innerHTML = rows.map(d=>`
+      <tr>
+        <td class="t"><a href="razbory/${d.id}/index.html">${d.title}</a>
+          <div class="meta">${d.author||'—'} · ${d.date||''} ·
+            <a class="yt" href="${d.url}" target="_blank" rel="noopener">YouTube ↗</a></div></td>
+        <td>${d.theme||''}</td>
+        <td class="num">${fmt(d.intro_len_s)}</td>
+        <td class="num">${d.cuts}</td>
+        <td class="num">${d.avg_plan_s} с</td>
+        <td class="num${d.wpm>=200?' hi':''}">${d.wpm}</td>
+        <td class="num">${d.words}</td>
+        <td class="num">${d.thoughts}</td>
+        <td class="num">${d.scenes}</td>
+        <td>${d.switch||''}</td>
+      </tr>`).join('');
+  }
+  draw(D);
+  document.querySelectorAll('#t th').forEach(th=>{
+    th.addEventListener('click',()=>{
+      const k=th.dataset.k; dir[k]=!dir[k];
+      const s=[...D].sort((a,b)=>{
+        const x=a[k],y=b[k];
+        const r = (typeof x==='number') ? x-y : String(x).localeCompare(String(y),'ru');
+        return dir[k]? -r : r;
+      });
+      draw(s);
+    });
+  });
+
+  // ---- цепочки
+  const cnt={};
+  D.forEach(d=>d.chain.forEach(s=>{
+    const k=s.toLowerCase().replace(/[«»"'.,:]/g,'').trim();
+    cnt[k]=(cnt[k]||0)+1;
+  }));
+  document.getElementById('ch').innerHTML = D.map(d=>`
+    <div class="crow">
+      <h3><a href="razbory/${d.id}/index.html">${d.title}</a></h3>
+      <div class="sub">${fmt(d.intro_len_s)} · ${d.chain.length} ходов · ${d.wpm} слов/мин</div>
+      <div class="chain">${d.chain.map((s,i)=>{
+        const k=s.toLowerCase().replace(/[«»"'.,:]/g,'').trim();
+        const c = cnt[k]>1 ? ' common' : '';
+        return (i?'<span class="ar">→</span>':'')+`<span class="s${c}">${s}</span>`;
+      }).join('')}</div>
+    </div>`).join('');
+
+  // ---- заметки
+  document.getElementById('nt').innerHTML = D.map(d=>`
+    <div class="note"><h4>${d.title}</h4><p>${d.note||''}</p></div>`).join('');
+});
+</script>
+</body>
+</html>

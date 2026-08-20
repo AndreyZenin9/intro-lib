@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Разбор интро — DeepSeek Harness (Даниил Шишко)</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:#111;
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:1000px;margin:0 auto;padding:48px 24px 96px}
+  h1{font-size:34px;line-height:1.2;margin:0 0 12px}
+  .sub{color:#555;font-size:15px;margin:0 0 8px}
+  .note{background:#f6f6f4;border-left:3px solid #111;padding:14px 18px;margin:24px 0;font-size:15px}
+  h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#888;
+     margin:56px 0 18px;padding-bottom:8px;border-bottom:1px solid #e6e6e6}
+  video{width:100%;border-radius:10px;background:#000;display:block}
+  audio{width:100%;margin-top:12px}
+  .btn{display:inline-block;margin-top:12px;padding:9px 16px;background:#111;color:#fff;
+       text-decoration:none;border-radius:7px;font-size:14px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .card{border:1px solid #e6e6e6;border-radius:10px;padding:14px 16px}
+  .card .n{font-size:26px;font-weight:650;letter-spacing:-.02em}
+  .card .l{font-size:13px;color:#666;margin-top:4px}
+  .card .h{font-size:12px;color:#999;margin-top:6px;line-height:1.4}
+  .post{max-width:680px}
+  .post h3{font-size:24px;line-height:1.25;margin:0 0 16px}
+  .post p{margin:0 0 16px}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .chip{border:1px solid #d8d8d8;border-radius:999px;padding:6px 13px;font-size:14px;background:#fafaf9}
+  .arr{color:#bbb}
+  .m{border-top:1px solid #eee;padding:26px 0}
+  .mhead{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:12px}
+  .tc{font-variant-numeric:tabular-nums;font-weight:600;font-size:14px;color:#111;
+      background:#f0f0ee;border:none;border-radius:6px;padding:4px 9px;cursor:pointer}
+  .tc:hover{background:#111;color:#fff}
+  .role{font-size:13px;border:1px solid #111;border-radius:6px;padding:3px 9px}
+  .tempo{font-size:13px;color:#777}
+  blockquote{margin:0 0 14px;font-size:20px;line-height:1.45;font-weight:450}
+  .strip{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
+  .strip img{height:auto;width:340px;flex:0 0 auto;border-radius:8px;border:1px solid #eaeaea}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Разбор интро: «DeepSeek Harness убивает подписки на Claude Code и Codex?»</h1>
+  <p class="sub">Канал «Даниил Шишко × Pixel Perfect | AI в дизайне», ролик от 19 августа 2026, длина 23:48.
+  Разбирается только интро — первые 2 минуты 11 секунд, где автор ещё не объясняет тему, а продаёт досмотр.</p>
+
+  <div class="note">
+    <b>Граница интро — 0:00–2:11.</b> Плотность монтажа в интро — 23 склейки за 131 секунду (одна смена
+    кадра каждые 5,7 с), дальше, в основной части, за следующие 90 секунд всего 3 склейки — падение
+    больше чем в пять раз. На 2:09 звучит слово-переключатель: «Со вступительной частью закончили.
+    Погнали». Оба признака сходятся в одной точке, поэтому граница поставлена без вопросов.
+  </div>
+
+  <h2>Источник</h2>
+  <video id="v" src="media/fragment.mp4" controls preload="metadata"></video>
+  <a class="btn" href="https://www.youtube.com/watch?v=hLgd8pUXvKo" target="_blank">Открыть на YouTube</a>
+  <audio src="media/fragment.mp3" controls></audio>
+
+  <h2>Паспорт интро</h2>
+  <div class="cards">
+    <div class="card"><div class="n">2:11</div><div class="l">длина интро</div>
+      <div class="h">типичное интро — 60–90 с, здесь заметно длиннее</div></div>
+    <div class="card"><div class="n">23</div><div class="l">склейки</div>
+      <div class="h">против 3 склеек за следующие 90 с основной части</div></div>
+    <div class="card"><div class="n">5,7 с</div><div class="l">средний план</div>
+      <div class="h">каждые ~6 секунд картинка меняется</div></div>
+    <div class="card"><div class="n">169</div><div class="l">слов в минуту</div>
+      <div class="h">норма разговорной речи ~130, то есть речь заметно разогнана</div></div>
+    <div class="card"><div class="n">369</div><div class="l">слов всего</div>
+      <div class="h">объём сказанного за интро</div></div>
+    <div class="card"><div class="n">9</div><div class="l">мыслей</div>
+      <div class="h">законченных смысловых блоков по 2–4 предложения</div></div>
+    <div class="card"><div class="n">13</div><div class="l">сцен</div>
+      <div class="h">смысловых картинок: голова, телефон, слайды, вставка из кино</div></div>
+  </div>
+
+  <h2>Пост</h2>
+  <div class="post">
+    <h3>Банковское приложение на десяток экранов — и ни строчки кода от меня</h3>
+    <p>Всё, что вы сейчас видите на экране, собрал бесплатный агент DeepSeek Harness. Я не писал код,
+    не подкидывал ему референс, не докидывал скилы. Просто поставил задачу.</p>
+    <p>Сейчас покажу весь путь: установка, бриф, результат и сколько денег это съело. А потом разберём
+    главное — чем эта штука отличается от Claude Code и Codex, для кого она вообще сделана и нужна ли
+    она лично тебе. И сразу: то, что на экране, — не потолок. Ближе к концу объясню, чем это можно
+    усилить.</p>
+    <p>Если ты зашёл случайно, объясню коротко. Агентские среды вроде Claude Code, Codex, Antigravity
+    стоят от 20 долларов в месяц. Для многих это кусается. Разница между обычным чатиком и агентской
+    средой простая: чатик не помнит, о чём вы говорили неделю назад, и всё наработанное со временем
+    просто исчезает. Агент живёт в одной среде, помнит контекст и не отвечает текстом — он создаёт
+    файлы, делает дизайн, управляет приложениями, если ты его к ним подключишь.</p>
+    <p>И вот DeepSeek выпустили Harness. Бесплатная агентская среда, где условно можно делать всё то
+    же самое. За всю историю GitHub это сейчас самый быстрорастущий проект.</p>
+    <p>На этом канале мы говорим про искусственный интеллект, агентов и то, как встроить их в
+    профессиональную работу — в частности, в работу дизайнером. Если интересно — подпишись и поставь
+    лайк, это очень помогает продвижению.</p>
+    <p>Со вступительной частью закончили. Погнали смотреть, как всё это установить.</p>
+  </div>
+
+  <h2>Цепочка ходов</h2>
+  <div class="chain">
+    <span class="chip">Результат сразу, без предисловий</span><span class="arr">→</span>
+    <span class="chip">Снятие вклада автора («я не написал ни строчки»)</span><span class="arr">→</span>
+    <span class="chip">Что будет в ролике</span><span class="arr">→</span>
+    <span class="chip">Крючок на конец («не потолок»)</span><span class="arr">→</span>
+    <span class="chip">Заход для новичка</span><span class="arr">→</span>
+    <span class="chip">Боль: цена от $20</span><span class="arr">→</span>
+    <span class="chip">Объяснение разницы</span><span class="arr">→</span>
+    <span class="chip">Мем-передышка</span><span class="arr">→</span>
+    <span class="chip">Приманка: бесплатно + №1 на GitHub</span><span class="arr">→</span>
+    <span class="chip">Про канал + просьба подписаться</span><span class="arr">→</span>
+    <span class="chip">Переключатель «Погнали»</span>
+  </div>
+
+  <h2>Разбор по мыслям</h2>
+
+  <div class="m">
+    <div class="mhead"><button class="tc" data-t="0">0:00</button>
+      <span class="role">Результат сразу</span><span class="tempo">185 сл/мин — разгон</span></div>
+    <blockquote>«Это банковское приложение с десятком экранов мне собрал бесплатный агент DeepSeek
+    Harness, вокруг которого сейчас гудит весь интернет. Я не написал ни строчки кода, не давал ему
+    никакого референса и даже скилов к нему не докидывал. Сейчас покажу весь путь».</blockquote>
+    <div class="strip"><img src="media/c02.jpg"><img src="media/d05.jpg"></div>
+  </div>
+
+  <div class="m">
+    <div class="mhead"><button class="tc" data-t="14">0:14</button>
+      <span class="role">Что будет в ролике + крючок на конец</span><span class="tempo">206 сл/мин — разгон</span></div>
+    <blockquote>«Установка, бриф, результат. Сколько это съело денег, а потом разберём главное: чем он
+    отличается от того же Claude Code, Codex, для кого он сделан и нужен ли он тебе. И сразу — то, что
+    ты видишь на экране, не потолок этого агента. Ближе к концу объясню, чем это ещё можно
+    усилить».</blockquote>
+    <div class="strip"><img src="media/c13.jpg"><img src="media/c19.jpg"><img src="media/c25.jpg"></div>
+  </div>
+
+  <div class="m">
+    <div class="mhead"><button class="tc" data-t="28">0:28</button>
+      <span class="role">Заход для новичка</span><span class="tempo">171 сл/мин — разгон</span></div>
+    <blockquote>«Если ты зашёл сюда случайно, давай вкратце объясню, что такое DeepSeek Harness».</blockquote>
+    <div class="strip"><img src="media/d37.jpg"></div>
+  </div>
+
+  <div class="m">
+    <div class="mhead"><button class="tc" data-t="35">0:35</button>
+      <span class="role">Боль: цена и разница чатика со средой</span><span class="tempo">177 сл/мин — разгон</span></div>
+    <blockquote>«У нас есть Claude Code, есть Codex, разные агентские оболочки — но все они платные,
+    подписки начинаются от 20 долларов. Давно разделились понятия: просто чатик и агентские среды.
+    Чатик не помнит, о чём вы говорили неделю назад, и всё, что ты в нём нарабатываешь, со временем
+    просто исчезает».</blockquote>
+    <div class="strip"><img src="media/c50.jpg"></div>
+  </div>
+
+  <div class="m">
+    <div class="mhead"><button class="tc" data-t="55">0:55</button>
+      <span class="role">Что даёт среда</span><span class="tempo">147 сл/мин — тормозит</span></div>
+    <blockquote>«Агентская среда — это когда ты общаешься со своим чатом в рамках одной конкретной
+    среды. Он не только даёт текстовые ответы, он создаёт файлы, создаёт дизайн. На самом деле делает
+    вообще что угодно, манипулирует любыми приложениями, если ты его подключишь».</blockquote>
+    <div class="strip"><img src="media/d58.jpg"><img src="media/c68.jpg"></div>
+  </div>
+
+  <div class="m">
+    <div class="mhead"><button class="tc" data-t="73">1:13</button>
+      <span class="role">Мем-передышка</span><span class="tempo">120 сл/мин — тормозит</span></div>
+    <blockquote>«— А где работаешь? — Частной фирмы. — Название есть? — Нет. — Адрес? — Не знаю, район
+    центр».</blockquote>
+    <div class="strip"><img src="media/c75.jpg"></div>
+  </div>
+
+  <div class="m">
+    <div class="mhead"><button class="tc" data-t="86">1:26</button>
+      <span class="role">Приманка: бесплатно + №1 на GitHub</span><span class="tempo">184 сл/мин — разгон</span></div>
+    <blockquote>«В этом и заключается суть агентов. Есть Codex, Claude Code, Antigravity и куча других,
+    но цена, как правило, стартует от 20 долларов — для многих кусается. И вот DeepSeek выпустили
+    Harness: бесплатная агентская среда, в которой условно можно делать всё то же самое. И за всю
+    историю GitHub на данный момент это самый быстрорастущий проект».</blockquote>
+    <div class="strip"><img src="media/e112.jpg"></div>
+  </div>
+
+  <div class="m">
+    <div class="mhead"><button class="tc" data-t="113">1:53</button>
+      <span class="role">Про канал + просьба подписаться</span><span class="tempo">155 сл/мин — ровно</span></div>
+    <blockquote>«На этом канале мы говорим об искусственном интеллекте, агентах и о том, как встроить их
+    в свою профессиональную деятельность, в частности в работу дизайнером. Если тебе это интересно —
+    обязательно подпишись, поставь лайк, нам это очень поможет для продвижения на YouTube».</blockquote>
+    <div class="strip"><img src="media/d126.jpg"></div>
+  </div>
+
+  <div class="m">
+    <div class="mhead"><button class="tc" data-t="128">2:08</button>
+      <span class="role">Переключатель</span><span class="tempo">110 сл/мин — тормозит</span></div>
+    <blockquote>«Со вступительной частью закончили. Погнали смотреть, как всё это дело
+    установить».</blockquote>
+    <div class="strip"><img src="media/d131.jpg"></div>
+  </div>
+
+</div>
+<script>
+  var v=document.getElementById('v');
+  document.querySelectorAll('.tc').forEach(function(b){
+    b.addEventListener('click',function(){
+      v.currentTime=parseFloat(b.dataset.t); v.play();
+      v.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  });
+</script>
+</body>
+</html>

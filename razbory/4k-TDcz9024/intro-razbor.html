@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Разбор интро — Георгий Ривера, SeeDance 2.5</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#fff; color:#111;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; }
+  .wrap { max-width:1060px; margin:0 auto; padding:40px 24px 80px; }
+  h1 { font-size:30px; line-height:1.2; margin:0 0 10px; }
+  .sub { color:#555; font-size:15px; margin-bottom:6px; }
+  .border-note { background:#f6f6f4; border-left:3px solid #111; padding:14px 18px;
+    font-size:15px; color:#333; margin:22px 0 34px; }
+  h2 { font-size:20px; margin:44px 0 16px; padding-bottom:8px; border-bottom:1px solid #e3e3e0; }
+  video, audio { width:100%; display:block; border-radius:8px; background:#000; }
+  audio { background:transparent; margin-top:12px; }
+  .btn { display:inline-block; margin-top:12px; padding:9px 16px; background:#111; color:#fff;
+    text-decoration:none; border-radius:6px; font-size:14px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; }
+  .card { border:1px solid #e3e3e0; border-radius:8px; padding:14px 16px; }
+  .card .num { font-size:26px; font-weight:700; }
+  .card .lbl { font-size:13px; color:#666; margin-top:4px; }
+  .post { background:#faf9f7; border:1px solid #ececea; border-radius:10px; padding:24px 28px; }
+  .post h3 { font-size:20px; margin:0 0 14px; }
+  .post p { margin:0 0 14px; font-size:16px; }
+  .chain { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+  .chip { background:#111; color:#fff; border-radius:20px; padding:7px 14px; font-size:13px; }
+  .arr { color:#999; }
+  .thought { border-top:1px solid #ececea; padding:22px 0; }
+  .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:10px; }
+  .tc { background:#111; color:#fff; border:0; border-radius:5px; padding:4px 9px;
+    font-size:13px; cursor:pointer; font-family:inherit; }
+  .role { background:#efece4; border-radius:5px; padding:4px 9px; }
+  .pace { color:#777; }
+  .speech { font-size:19px; line-height:1.45; margin:0 0 14px; }
+  .frames { display:flex; gap:10px; overflow-x:auto; padding-bottom:6px; }
+  .frames img { height:210px; min-width:340px; width:auto; object-fit:cover;
+    border-radius:6px; border:1px solid #e3e3e0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Разбор интро: «Как я делаю БЕЗУМНЫЕ ИИ-видео в SeeDance 2.5 одним промтом за 5 минут»</h1>
+  <div class="sub">Канал «Георгий Ривера», ролик от 9 августа 2026, полная длина 17:00. Разбирается только интро — первый блок, где автор ещё не учит, а продаёт досмотр.</div>
+
+  <div class="border-note">
+    <b>Граница интро: 0:00–0:48.</b> Три признака совпали. Первый: плотность монтажа —
+    10 склеек за первые 49 секунд (средний план 4,9 с), дальше за 71 секунду всего
+    4 склейки, падение в 3,5 раза, и обратно она не растёт. Второй: слово-переключатель —
+    на 0:47 звучит «Давайте сразу к делу». Третий: смена времени глагола — до этой точки
+    сплошное будущее («покажу», «вы сможете»), сразу после — настоящее
+    действие («я сделаю генерацию на предыдущем движке, чтобы мы могли сравнить»).
+  </div>
+
+  <h2>1. Источник</h2>
+  <video id="v" controls preload="metadata" src="media/fragment.mp4"></video>
+  <a class="btn" href="https://www.youtube.com/watch?v=4k-TDcz9024" target="_blank">Открыть на YouTube</a>
+  <audio controls src="media/fragment.mp3"></audio>
+
+  <h2>2. Паспорт интро</h2>
+  <div class="cards">
+    <div class="card"><div class="num">48 с</div><div class="lbl">длина интро; типичное интро — 60–90 секунд, это короткое</div></div>
+    <div class="card"><div class="num">10</div><div class="lbl">склеек внутри интро (после неё — 4 склейки за 71 секунду)</div></div>
+    <div class="card"><div class="num">4,9 с</div><div class="lbl">средний план — длина куска между склейками</div></div>
+    <div class="card"><div class="num">137</div><div class="lbl">слов в минуту; норма разговорной русской речи ~130</div></div>
+    <div class="card"><div class="num">112</div><div class="lbl">слов всего произнесено за интро</div></div>
+    <div class="card"><div class="num">5</div><div class="lbl">законченных мыслей — смысловых единиц речи</div></div>
+    <div class="card"><div class="num">11</div><div class="lbl">сцен: показ ИИ-генераций, титры-обещание, говорящая голова</div></div>
+  </div>
+
+  <h2>3. Пост</h2>
+  <div class="post">
+    <h3>Реалистичное видео на 30 секунд — одним промтом за пять минут</h3>
+    <p>Прямо сейчас покажу, как за несколько простых шагов создавать реалистичные тридцатисекундные видео в SeeDance 2.5 буквально одним промтом. Пять минут работы — и готовый ролик. По мне, это что-то невероятное.</p>
+    <p>Такие видео можно делать для своих соцсетей, для развития бизнеса или зарабатывать на них — за один ИИ-ролик платят от пяти тысяч до ста тысяч рублей.</p>
+    <p>Но сперва хочу показать то, что мне кажется ещё круче. Я покажу, как добавить реалистичную ИИ-генерацию на своё собственное видео.</p>
+    <p>Отличие этого подхода вот в чём: я беру своё настоящее видео, снятое на телефон, и прямо на него добавляю всё, что захочу. Например, золотого единорога, которого я глажу у себя в комнате.</p>
+    <p>Как вам такая идея? Давайте сразу к делу.</p>
+  </div>
+
+  <h2>4. Цепочка ходов</h2>
+  <div class="chain">
+    <span class="chip">Обещание результата</span><span class="arr">→</span>
+    <span class="chip">Показ результата живьём</span><span class="arr">→</span>
+    <span class="chip">Снятие сложности («простых шагов», «5 минут»)</span><span class="arr">→</span>
+    <span class="chip">Зачем тебе это: соцсети, бизнес, деньги</span><span class="arr">→</span>
+    <span class="chip">Перебивка ожидания: «но сперва — ещё круче»</span><span class="arr">→</span>
+    <span class="chip">Отстройка своего подхода</span><span class="arr">→</span>
+    <span class="chip">Показ до/после на своём видео</span><span class="arr">→</span>
+    <span class="chip">Вопрос-вовлечение</span><span class="arr">→</span>
+    <span class="chip">Переключатель «сразу к делу»</span>
+  </div>
+  <p style="font-size:14px;color:#666;margin-top:14px;">Чего в этом интро нет: «не ты один», снятия вины, авторитета источника, просьбы досмотреть и подарка за досмотр. Автор не работает с болью вообще — он сразу продаёт результатом.</p>
+
+  <h2>5. Разбор по мыслям</h2>
+
+  <div class="thought">
+    <div class="meta"><button class="tc" data-t="0">0:00</button><span class="role">Обещание результата + снятие сложности</span><span class="pace">129 слов/мин — ровно норма</span></div>
+    <p class="speech">«Прямо сейчас покажу, как за несколько простых шагов вы сможете создавать такие реалистичные тридцатисекундные видео SeeDance 2.5 буквально одним промтом, всего за 5 минут. И как по мне, это что-то невероятное.»</p>
+    <div class="frames">
+      <img src="media/f1.0.jpg" alt=""><img src="media/f3.0.jpg" alt="">
+      <img src="media/f6.4.jpg" alt=""><img src="media/f10.4.jpg" alt="">
+    </div>
+  </div>
+
+  <div class="thought">
+    <div class="meta"><button class="tc" data-t="14">0:14</button><span class="role">Зачем тебе это: соцсети, бизнес, деньги</span><span class="pace">128 слов/мин — норма</span></div>
+    <p class="speech">«Вы сможете делать такие видео для своих соцсетей, для развития бизнеса или даже зарабатывать на этом возможно серьёзные деньги.»</p>
+    <div class="frames">
+      <img src="media/f13.0.jpg" alt=""><img src="media/f17.2.jpg" alt="">
+    </div>
+  </div>
+
+  <div class="thought">
+    <div class="meta"><button class="tc" data-t="22">0:22</button><span class="role">Перебивка ожидания: «но сперва — ещё круче»</span><span class="pace">125 слов/мин — чуть тормозит, вес на словах</span></div>
+    <p class="speech">«Но сперва хочу показать вам то, что мне кажется ещё более крутым. Я покажу, как на своё видео добавить реалистичную ИИ-генерацию.»</p>
+    <div class="frames">
+      <img src="media/f26.0.jpg" alt=""><img src="media/f29.0.jpg" alt="">
+    </div>
+  </div>
+
+  <div class="thought">
+    <div class="meta"><button class="tc" data-t="34">0:34</button><span class="role">Отстройка подхода + показ до/после</span><span class="pace">142 слова/мин — разгон</span></div>
+    <p class="speech">«И отличие этого подхода в том, что я возьму своё настоящее видео и прямо на него добавлю, да, всё, что захочу. Например, золотого единорога, как на этом видео.»</p>
+    <div class="frames">
+      <img src="media/f32.0.jpg" alt=""><img src="media/f35.0.jpg" alt="">
+      <img src="media/f38.8.jpg" alt=""><img src="media/f44.0.jpg" alt="">
+    </div>
+  </div>
+
+  <div class="thought">
+    <div class="meta"><button class="tc" data-t="45">0:45</button><span class="role">Вопрос-вовлечение + переключатель</span><span class="pace">210 слов/мин — резкий разгон, самая быстрая точка интро</span></div>
+    <p class="speech">«Как вам такая идея? Давайте сразу к делу.»</p>
+    <div class="frames">
+      <img src="media/f46.5.jpg" alt="">
+    </div>
+  </div>
+
+</div>
+<script>
+  var v = document.getElementById('v');
+  document.querySelectorAll('.tc').forEach(function(b){
+    b.addEventListener('click', function(){
+      v.currentTime = parseFloat(b.dataset.t); v.play();
+      v.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  });
+</script>
+</body>
+</html>
