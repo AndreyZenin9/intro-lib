@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Разбор интро — «ИИ-завод для Instagram: карусели с Claude» (Георгий Ривера)</title>
+<style>
+  :root{ --ink:#111; --mut:#6b7280; --line:#e5e7eb; --acc:#c2410c; --bg2:#f8f8f7; }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-size:30px;line-height:1.25;margin:0 0 8px}
+  .sub{color:var(--mut);font-size:15px;margin:0 0 6px}
+  .verdict{background:var(--bg2);border-left:3px solid var(--acc);padding:14px 18px;margin:22px 0 0;font-size:15px}
+  h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);
+     margin:56px 0 18px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  video,audio{width:100%;border-radius:8px;background:#000;display:block}
+  audio{background:transparent;margin-top:12px}
+  .btn{display:inline-block;margin-top:12px;padding:8px 14px;border:1px solid var(--line);
+       border-radius:6px;color:var(--ink);text-decoration:none;font-size:14px}
+  .btn:hover{border-color:var(--ink)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .card{border:1px solid var(--line);border-radius:8px;padding:14px}
+  .card b{display:block;font-size:26px;line-height:1.1;margin-bottom:4px}
+  .card span{font-size:13px;color:var(--mut)}
+  .post{font-size:17px;line-height:1.75}
+  .post h3{font-size:22px;margin:0 0 14px}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .chip{border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-size:14px;background:var(--bg2)}
+  .arr{color:var(--mut)}
+  .th{border-top:1px solid var(--line);padding:24px 0}
+  .thead{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:10px}
+  .tc{font-variant-numeric:tabular-nums;color:var(--acc);cursor:pointer;font-weight:600;
+      border:none;background:none;padding:0;font-size:15px;font-family:inherit}
+  .tc:hover{text-decoration:underline}
+  .role{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);
+        border:1px solid var(--line);border-radius:4px;padding:2px 8px}
+  .wpm{font-size:13px;color:var(--mut)}
+  .speech{font-size:19px;line-height:1.55;margin:10px 0 14px}
+  .strip{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
+  .strip img{height:210px;min-width:340px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Я построил ИИ-завод для Instagram: карусели с Claude за 5 минут</h1>
+  <p class="sub">Георгий Ривера · YouTube · 11 апреля 2026 · весь ролик 19:02 · 46 тыс. просмотров</p>
+  <p class="sub">Разбирается только интро — первый блок, где автор не объясняет тему, а продаёт досмотр.</p>
+
+  <div class="verdict">
+    <b>Граница интро: 0:00–2:07.</b> На 2:05 звучит «Начинаем практику», на 2:08 — «Итак, что нам
+    понадобится сегодня?». Дальше речь переходит из будущего времени («покажу», «объясню») в настоящее
+    («открываем обычный чат в Клоде, вставляем промт»). Монтаж после границы плотнее: 11 склеек за первые
+    127 секунд против 10 за следующие 60.
+  </div>
+
+  <h2>Источник</h2>
+  <video id="v" controls preload="metadata" src="media/fragment.mp4"></video>
+  <a class="btn" href="https://www.youtube.com/watch?v=t9v-b2nVQOc" target="_blank">Открыть на YouTube</a>
+  <audio controls preload="metadata" src="media/fragment.mp3"></audio>
+
+  <h2>Паспорт интро</h2>
+  <div class="cards">
+    <div class="card"><b>2:07</b><span>длина интро. Типичное — 60–90 секунд, это вдвое длиннее</span></div>
+    <div class="card"><b>11</b><span>склеек за интро</span></div>
+    <div class="card"><b>10,6 с</b><span>средний план. Монтаж редкий, почти статичный</span></div>
+    <div class="card"><b>122</b><span>слов в минуту. Норма разговорной русской речи ~130 — говорит размеренно</span></div>
+    <div class="card"><b>249</b><span>слов сказано всего</span></div>
+    <div class="card"><b>10</b><span>законченных мыслей</span></div>
+    <div class="card"><b>12</b><span>сцен на экране</span></div>
+  </div>
+
+  <h2>Пост</h2>
+  <div class="post">
+    <h3>Почему я делаю карусели, а не рилсы</h3>
+    <p>В прошлом выпуске я показал контент-завод: несколько промтов — и нейросеть Claude сама
+    превращает один сценарий длинного видео в рилсы, статьи для Дзена и посты для Telegram,
+    ВКонтакте и ещё десятка соцсетей. Сегодня следующий уровень — необычный способ делать
+    виральные карусели для Instagram.</p>
+
+    <p>Именно карусели, и вот почему. Рилсы — это развлечение. Люди приходят туда отдохнуть,
+    полистать ленту, посмеяться. Карусели — другая история: там подаётся интеллектуальный
+    контент, и этот формат притягивает платёжеспособную аудиторию.</p>
+
+    <p>Плюс цифры. Карусели в Instagram дают вовлечённость выше на 30%, один такой пост получает
+    в три раза больше охватов, чем обычная публикация. А если добавить трендовую музыку, пост
+    попадёт ещё и в музыкальную ленту — выгода двойная.</p>
+
+    <p>Так что если ваша задача не танцы снимать, а продавать свои услуги, продвигать бизнес
+    или блог — этот выпуск точно для вас.</p>
+
+    <p>Это второе видео сериала, где мы вместе строим контент-завод на нейросетях. Первый выпуск
+    уже набрал 30 000 просмотров и помог многим сэкономить время и деньги на контенте. Уверен,
+    что этот продвинет ваши дела ещё выше, а следующий — ещё выше. Лично я буду для этого
+    очень стараться.</p>
+
+    <p>Поэтому ставьте лайк авансом. Если видео не понравится — заберёте свой лайк обратно.</p>
+  </div>
+
+  <h2>Цепочка ходов</h2>
+  <div class="chain">
+    <span class="chip">Отсылка к прошлому выпуску</span><span class="arr">→</span>
+    <span class="chip">Обещание результата</span><span class="arr">→</span>
+    <span class="chip">Противопоставление форматов</span><span class="arr">→</span>
+    <span class="chip">Аргумент про платёжеспособную аудиторию</span><span class="arr">→</span>
+    <span class="chip">Цифры-доказательство</span><span class="arr">→</span>
+    <span class="chip">Бонусный приём сверху</span><span class="arr">→</span>
+    <span class="chip">Фильтр аудитории</span><span class="arr">→</span>
+    <span class="chip">Авторитет цифрой</span><span class="arr">→</span>
+    <span class="chip">Анонс серии</span><span class="arr">→</span>
+    <span class="chip">Просьба о лайке с шуткой</span>
+  </div>
+
+  <h2>Разбор по мыслям</h2>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="5">0:05</button>
+      <span class="role">Отсылка к прошлому выпуску</span><span class="wpm">116 слов/мин</span></div>
+    <div class="speech">«В прошлом видео я показал, как построить контент-завод. Всего несколько
+      промтов — и у вас сценарий для длинного видео, из которого Клод сам делает рилсы, статьи
+      для Дзена, посты в Telegram, ВКонтакте и ещё 10 других социальных сетей».</div>
+    <div class="strip"><img src="media/frames/f7.5.jpg" alt=""><img src="media/frames/f12.jpg" alt=""><img src="media/frames/f18.jpg" alt=""></div>
+  </div>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="20">0:20</button>
+      <span class="role">Обещание результата</span><span class="wpm">109 слов/мин · тормозит</span></div>
+    <div class="speech">«Сегодня следующий уровень. Я покажу вам совершенно необычный способ
+      создания виральных каруселей для Instagram».</div>
+    <div class="strip"><img src="media/frames/f26.5.jpg" alt=""></div>
+  </div>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="31">0:31</button>
+      <span class="role">Противопоставление форматов</span><span class="wpm">115 слов/мин</span></div>
+    <div class="speech">«Именно каруселей. И сейчас объясню, почему. Смотрите, что происходит.
+      Рилсы — это развлекательный контент. Люди туда приходят отдохнуть, полистать ленту,
+      посмеяться».</div>
+    <div class="strip"><img src="media/frames/f42.jpg" alt=""></div>
+  </div>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="44">0:44</button>
+      <span class="role">Аргумент про платёжеспособную аудиторию</span><span class="wpm">128 слов/мин</span></div>
+    <div class="speech">«Но карусели — это уже совершенно другая история. В каруселях подаётся то,
+      что я бы назвал интеллектуальный контент. И именно этот формат притягивает платёжеспособную
+      аудиторию».</div>
+    <div class="strip"><img src="media/frames/f54.jpg" alt=""></div>
+  </div>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="58">0:58</button>
+      <span class="role">Цифры-доказательство</span><span class="wpm">136 слов/мин · разгон</span></div>
+    <div class="speech">«Карусели в Инстаграме сейчас дают, к тому же, вовлечённость выше на 30%.
+      То есть один пост получает в три раза больше охватов, чем обычная публикация».</div>
+  </div>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="69">1:09</button>
+      <span class="role">Бонусный приём сверху</span><span class="wpm">142 слов/мин · разгон</span></div>
+    <div class="speech">«А если вы добавите к своей карусели ещё и какую-нибудь трендовую музыку,
+      то ваш пост попадёт в ленту. То есть от такого продвижения может быть двойная выгода».</div>
+    <div class="strip"><img src="media/frames/f78.jpg" alt=""></div>
+  </div>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="79">1:19</button>
+      <span class="role">Фильтр аудитории</span><span class="wpm">124 слов/мин</span></div>
+    <div class="speech">«Поэтому, если ваша задача не просто танцы снимать, а делать продажи ваших
+      услуг, для вашего бизнеса, для вашего блога, то этот выпуск он точно для вас».</div>
+    <div class="strip"><img src="media/frames/f85.5.jpg" alt=""></div>
+  </div>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="92">1:32</button>
+      <span class="role">Авторитет цифрой</span><span class="wpm">120 слов/мин</span></div>
+    <div class="speech">«И это второе видео из сериала, где мы вместе строим контент-завод с
+      нейросетями. Первый выпуск он уже набрал 30 000 просмотров и помог уже очень многим
+      сэкономить время, деньги на создание контента».</div>
+    <div class="strip"><img src="media/frames/f100.jpg" alt=""></div>
+  </div>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="106">1:46</button>
+      <span class="role">Анонс серии</span><span class="wpm">118 слов/мин</span></div>
+    <div class="speech">«Я уверен, что этот выпуск он тоже продвинет ваши успехи в ваших делах ещё
+      выше, а следующий выпуск — ещё выше. Лично я буду для этого очень стараться».</div>
+  </div>
+
+  <div class="th">
+    <div class="thead"><button class="tc" data-t="119">1:59</button>
+      <span class="role">Просьба о лайке с шуткой</span><span class="wpm">130 слов/мин</span></div>
+    <div class="speech">«Поэтому ставьте лайк авансом, и если видео вам не понравится, то заберёте
+      свой лайк обратно. Начинаем практику».</div>
+    <div class="strip"><img src="media/frames/f122.jpg" alt=""></div>
+  </div>
+
+</div>
+<script>
+  var v = document.getElementById('v');
+  document.querySelectorAll('.tc').forEach(function(b){
+    b.addEventListener('click', function(){
+      v.currentTime = parseFloat(b.dataset.t); v.play();
+      v.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  });
+</script>
+</body>
+</html>
