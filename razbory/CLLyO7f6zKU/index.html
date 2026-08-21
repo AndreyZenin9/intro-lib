@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Разбор интро — Grow with Alex, «Claude + Nano Banana: посты для соцсетей за минуты»</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 52px 40px 120px;
+  background: #ffffff; color: #111;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1560px; margin: 0 auto; }
+h1 { font-size: 31px; line-height: 1.15; margin: 0 0 12px; font-weight: 700; }
+.lead { color: #555; font-size: 15px; line-height: 1.55; max-width: 940px; }
+h2.sec { font-size: 13px; text-transform: uppercase; letter-spacing: .1em;
+         color: #888; font-weight: 700; margin: 48px 0 16px; }
+.btn { display: inline-block; border: 1px solid #ddd; background: #fafafa; border-radius: 8px;
+       padding: 9px 16px; font-size: 14px; color: #111; text-decoration: none; }
+
+.player { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; margin-top: 8px; }
+.player video { width: 100%; max-width: 760px; border-radius: 10px; border: 1px solid #d8d8d8; display: block; }
+.player .side { flex: 1 1 300px; min-width: 280px; }
+.player audio { width: 100%; margin-top: 14px; }
+
+.pass { display: flex; flex-wrap: wrap; gap: 12px; }
+.pass .m { flex: 1 1 150px; border: 1px solid #e2e2e2; border-radius: 10px; padding: 14px 16px; }
+.pass .m .v { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pass .m .k { font-size: 12px; color: #888; margin-top: 5px; }
+.pass .m .n { font-size: 11.5px; color: #b8360f; margin-top: 6px; }
+
+.chain { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chain .s { border: 1px solid #ddd; border-radius: 20px; padding: 7px 15px; font-size: 13.5px; background: #fafafa; }
+.chain .ar { color: #bbb; font-size: 15px; }
+
+.block { padding: 32px 0 38px; border-top: 1px solid #e2e2e2; }
+.meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; }
+.tc { font-size: 12px; font-weight: 700; letter-spacing: .07em; color: #999; font-variant-numeric: tabular-nums; }
+.tc a { color: #b8360f; text-decoration: none; border-bottom: 1px dotted #d8a08c; }
+.tag { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; font-weight: 700;
+       color: #b8360f; background: #fdece5; border: 1px solid #f2c4b0; border-radius: 4px; padding: 3px 9px; }
+.rate { font-size: 12px; color: #888; font-variant-numeric: tabular-nums; }
+
+.three { display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+         border: 1px solid #e2e2e2; border-radius: 12px; overflow: hidden; }
+.three > div { padding: 20px 24px 22px; }
+.three .src { background: #fbfbfb; border-right: 1px solid #e2e2e2; }
+.three .rus { background: #fff; }
+.hdr { font-size: 10.5px; text-transform: uppercase; letter-spacing: .09em; font-weight: 700; margin-bottom: 12px; }
+.src .hdr { color: #999; }
+.rus .hdr { color: #b8360f; }
+.en { font-size: 14px; line-height: 1.5; color: #8a8a8a; font-style: italic; margin-bottom: 14px; }
+.lit { font-size: 16px; line-height: 1.5; color: #444; }
+.strong { font-size: 18.5px; line-height: 1.5; color: #000; font-weight: 450; }
+.strong ul { margin: 12px 0 0; padding-left: 0; list-style: none; }
+.strong li { font-size: 17px; line-height: 1.45; margin: 0 0 10px; padding-left: 22px; position: relative; }
+.strong li::before { content: "—"; position: absolute; left: 0; color: #b8360f; font-weight: 700; }
+.len { font-size: 11.5px; color: #aaa; margin-top: 14px; font-variant-numeric: tabular-nums; }
+.rus .len { color: #b8360f; }
+
+.strip { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; margin-top: 22px; }
+.shot { flex: 1 1 0; min-width: 340px; max-width: 740px; }
+.shot img { width: 100%; display: block; border-radius: 10px; border: 1px solid #d8d8d8; }
+.shot .cap { font-size: 12.5px; color: #888; margin-top: 8px; line-height: 1.45; }
+
+.note { background: #fafafa; border: 1px solid #e2e2e2; border-radius: 10px; padding: 16px 20px;
+        font-size: 14px; line-height: 1.6; color: #444; max-width: 1100px; }
+.note ul { margin: 10px 0 0; padding-left: 20px; }
+.note li { margin-bottom: 7px; }
+.warn { background: #fdece5; border-color: #f2c4b0; color: #7a2c10; }
+
+.post { border: 2px solid #111; border-radius: 12px; padding: 34px 38px 30px; max-width: 800px; }
+.post h3 { font-size: 26px; line-height: 1.28; margin: 0 0 22px; font-weight: 700; }
+.post p { font-size: 17.5px; line-height: 1.6; margin: 0 0 17px; }
+.post .kick { font-size: 20px; line-height: 1.42; font-weight: 600; margin: 24px 0 18px; }
+
+.bul .item { border-top: 1px solid #e2e2e2; padding: 18px 0 16px; max-width: 860px; }
+.bul .item:last-child { border-bottom: 1px solid #e2e2e2; }
+.bul .b { font-size: 19px; line-height: 1.38; font-weight: 600; }
+.bul .s { font-size: 14.5px; line-height: 1.55; color: #666; margin-top: 7px; }
+
+@media (max-width: 900px) {
+  body { padding: 30px 16px 80px; }
+  h1 { font-size: 24px; }
+  .three { grid-template-columns: 1fr; }
+  .three .src { border-right: none; border-bottom: 1px solid #e2e2e2; }
+  .shot { min-width: 100%; }
+  .post { padding: 24px 20px 22px; }
+  .post h3 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Разбор интро: Grow with Alex, «Claude + Nano Banana. Безумный контент для соцсетей за минуты»</h1>
+<p class="lead">
+Автор — Алекс, англоязычный блогер про контент-маркетинг; ролик длится 27 минут и собрал
+346 тысяч просмотров. Claude — программа-собеседник от компании Anthropic: пишешь ей задание
+текстом, она в ответ пишет текст и делает файлы. Nano Banana — рисовалка картинок от Google:
+описываешь словами, что нужно, получаешь изображение. Canva, о которой автор говорит
+в первой фразе, — редактор картинок, где макеты собирают руками.
+Разбирается только интро — первый кусок ролика, где автор ещё ничему не учит, а удерживает зрителя.
+</p>
+<p class="lead" style="margin-top:14px">
+<b>Граница интро — 0:46,5.</b> Совпали два признака. Первый: слово-переключатель — «but first,
+we need to understand Claude» («но сначала нам нужно разобраться в Claude») и сразу за ним
+на 0:48 новый заход «Before I show you anything, I need you to understand Claude»
+(«прежде чем что-то показывать, мне нужно, чтобы вы разобрались в Claude»). Автор буквально
+повторяет фразу — так помечен стык. Второй: смена времени глагола — до этого «я покажу»,
+«мы сделаем», после — «Claude создаёт файлы», «он подключается к вашим программам»,
+то есть от обещаний к разбору. Третий признак — обрыв плотности склеек — здесь сработал
+в инвертированном виде: до 0:43 склейки идут каждые 2–5 секунд, с 0:43 по 0:56 не было
+ни одной, тринадцать секунд одного плана. Не падение, а провал в ноль.
+</p>
+<p class="lead" style="margin-top:14px">
+Ролик английский. Слева два слоя: <b>оригинал</b> мелкой строкой и <b>дословный перевод</b>.
+Справа — <b>сильный русский</b>: тот же ход автора, пересказанный так, как он работал бы в посте.
+Порядок ходов не тронут, ничего не добавлено — только переформулировано.
+</p>
+
+<h2 class="sec">1. Источник</h2>
+<div class="player">
+  <video id="v" controls preload="metadata" src="media/fragment.mp4"></video>
+  <div class="side">
+    <a class="btn" href="https://youtu.be/CLLyO7f6zKU" target="_blank" rel="noopener">Открыть на YouTube</a>
+    <audio controls preload="metadata" src="media/fragment.mp3"></audio>
+    <p style="font-size:13px;color:#888;line-height:1.5;margin-top:14px">
+      Фрагмент — первые 47 секунд ролика. Таймкоды в разборе кликабельны: перематывают плеер.
+    </p>
+  </div>
+</div>
+
+<h2 class="sec">2. Паспорт интро</h2>
+<div class="pass">
+  <div class="m"><div class="v">0:46</div><div class="k">длина интро</div><div class="n">короче обычных 60–90 с</div></div>
+  <div class="m"><div class="v">12</div><div class="k">склеек</div><div class="n">все до 0:43,5</div></div>
+  <div class="m"><div class="v">3,9 с</div><div class="k">средний план</div><div class="n">до 0:43,5 — плотный монтаж</div></div>
+  <div class="m"><div class="v">218</div><div class="k">слов в минуту</div><div class="n">у англоязычных ютуберов норма 180–200 — это разгон</div></div>
+  <div class="m"><div class="v">169</div><div class="k">слов всего</div><div class="n">за 46,5 секунды</div></div>
+  <div class="m"><div class="v">6</div><div class="k">мыслей</div><div class="n">законченных смысловых блока</div></div>
+  <div class="m"><div class="v">0 с</div><div class="k">пауза перед крючком</div><div class="n">речь начинается с первого кадра</div></div>
+</div>
+<p class="note warn" style="margin-top:16px">
+<b>Главное в цифрах: интро идёт 46 секунд, а лицо автора появляется только на 12-й.</b>
+Первые двенадцать секунд на экране одни результаты — готовые посты в ленте.
+Обещание показано раньше, чем произнесено имя автора. Скорость речи 218 слов в минуту
+при английской норме 180–200: за 46 секунд автор укладывает шесть законченных мыслей.
+</p>
+
+<h2 class="sec">3. Цепочка ходов</h2>
+<div class="chain">
+  <span class="s">Результат сразу, без представления</span><span class="ar">→</span>
+  <span class="s">Отрицание привычного пути: «ни Canva, ни дизайнера»</span><span class="ar">→</span>
+  <span class="s">Доказательство числом: тысячи лайков</span><span class="ar">→</span>
+  <span class="s">Обмен времени: минуты вместо часов</span><span class="ar">→</span>
+  <span class="s">Регалии: 10 лет и бренды</span><span class="ar">→</span>
+  <span class="s">Опись содержимого ролика</span><span class="ar">→</span>
+  <span class="s">Обещание непохожести</span><span class="ar">→</span>
+  <span class="s">Заявка на серию</span><span class="ar">→</span>
+  <span class="s">Показ готовой работы</span><span class="ar">→</span>
+  <span class="s">Переключатель «сначала разберёмся в Claude»</span>
+</div>
+<p class="note" style="margin-top:16px">
+Особенность цепочки — <b>результат идёт первым ходом, регалии четвёртым</b>. Одиннадцать
+секунд зритель смотрит на чужие посты с лайками и не знает, кто говорит. Имя, опыт и бренды
+подъезжают только после того, как показано, ради чего вообще смотреть. Второй ход из редких —
+<b>«ни Canva, ни дизайнера» стоит в первой же фразе</b>: автор называет то, чем зритель
+пользуется сейчас, и вычёркивает это раньше, чем предлагает замену. Третий —
+<b>двойной показ результата</b>: сначала посты в ленте на 0:00–0:11, потом ещё раз
+на 0:34–0:43 уже с оговоркой «это сделано целиком двумя программами».
+</p>
+
+<h2 class="sec">4. Разбор по мыслям</h2>
+
+<div class="block">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="0">0:00 — 0:11</a></span>
+    <span class="tag">Результат и отрицание привычного пути</span>
+    <span class="rate">219 слов/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">Claude and NanoBanana have just changed how I make social media content. Two AI tools, no Canva, no designer, and the results are insane. These posts get thousands of likes time and time again, and they take minutes, not hours, to make.</div>
+      <div class="lit">Claude и NanoBanana только что изменили то, как я делаю контент для соцсетей. Два ИИ-инструмента, никакой Canva, никакого дизайнера, и результаты безумные. Эти посты получают тысячи лайков раз за разом, и на них уходят минуты, а не часы.</div>
+      <div class="len">14,0 слова в предложении · 42 слова / 3 предложения</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский</div>
+      <div class="strong">
+        Картинки для соцсетей я больше не заказываю. Ни дизайнеру, ни в редакторе Canva.
+        Их делают две программы: Claude и Nano Banana.
+        Посты выходят такие, что собирают тысячи лайков. Раз за разом.
+        На один пост уходят минуты, а не часы.
+      </div>
+      <div class="len">6,5 слова в предложении · 39 слов / 6 предложений</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media/frames/f2.0.jpg" alt="">
+      <div class="cap">0:02 — вместо лица автора лента постов. Обещание показано картинкой раньше, чем произнесено словами.</div>
+    </div>
+    <div class="shot">
+      <img src="media/frames/f7.5.jpg" alt="">
+      <div class="cap">0:07 — карточки листаются под речь: на каждый пост виден счётчик лайков. Слово «тысячи» подтверждено цифрой на экране.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="11.5">0:11 — 0:19</a></span>
+    <span class="tag">Регалии</span>
+    <span class="rate">249 слов/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">Now, I've spent over 10 years in content marketing and built multiple social media brands. And now, I'm using AI every single day to build systems that actually work.</div>
+      <div class="lit">Так вот, я провёл более 10 лет в контент-маркетинге и построил несколько брендов в соцсетях. И теперь я использую ИИ каждый божий день, чтобы строить системы, которые действительно работают.</div>
+      <div class="len">15,5 слова в предложении · 31 слово / 2 предложения</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский</div>
+      <div class="strong">
+        Десять лет я делаю контент за деньги. За это время поднял несколько брендов в соцсетях.
+        Теперь беру для этого ИИ. Каждый день.
+        Собираю на нём схемы работы, которые не рассыпаются.
+      </div>
+      <div class="len">6,0 слова в предложении · 30 слов / 5 предложений</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media/frames/f13.8.jpg" alt="">
+      <div class="cap">0:13 — регалия вынесена титром поверх кадра: «Spent over 10 years in content marketing». Число подтверждено буквами, а не только голосом.</div>
+    </div>
+    <div class="shot">
+      <img src="media/frames/f16.0.jpg" alt="">
+      <div class="cap">0:16 — «несколько брендов» показаны счётчиком чужой страницы: 1,8 млн подписчиков, 927 постов. Слова «несколько брендов» получили конкретный размер.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="19">0:19 — 0:29</a></span>
+    <span class="tag">Опись содержимого</span>
+    <span class="rate">199 слов/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">In this video today, I'm going to show you exactly how I use Claude and NanoBanana to turn my own content into social media posts that look like nothing else out there.</div>
+      <div class="lit">В этом видео сегодня я собираюсь показать вам в точности, как я использую Claude и NanoBanana, чтобы превращать мой собственный контент в посты для соцсетей, которые не похожи ни на что другое там снаружи.</div>
+      <div class="len">33,0 слова в предложении · 33 слова / 1 предложение</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский</div>
+      <div class="strong">
+        Сегодня показываю сам ход. Целиком, без пропусков.
+        Как я беру свой уже готовый материал.
+        Как из него получаются посты для соцсетей.
+        И почему эти посты не похожи ни на что вокруг.
+      </div>
+      <div class="len">6,2 слова в предложении · 31 слово / 5 предложений</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media/frames/f18.2.jpg" alt="">
+      <div class="cap">0:18 — строка задания «Build me a lead follow-up system» набирается на экране под речь. Работа показана в момент, когда о ней говорят.</div>
+    </div>
+    <div class="shot">
+      <img src="media/frames/f23.0.jpg" alt="">
+      <div class="cap">0:23 — говорящая голова возвращается ровно на обещании. Лицо появляется там, где нужно доверие, а не там, где нечего показать.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="29">0:29 — 0:34</a></span>
+    <span class="tag">Заявка на серию</span>
+    <span class="rate">184 слова/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">This is episode one of a full series where I build the ultimate AI social media system.</div>
+      <div class="lit">Это первый эпизод полной серии, где я строю окончательную ИИ-систему для соцсетей.</div>
+      <div class="len">17,0 слов в предложении · 17 слов / 1 предложение</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский</div>
+      <div class="strong">
+        Это первый выпуск. Дальше будет серия.
+        В ней я соберу всю работу с соцсетями на ИИ целиком.
+      </div>
+      <div class="len">5,7 слова в предложении · 17 слов / 3 предложения</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media/frames/f26.5.jpg" alt="">
+      <div class="cap">0:26 — строка задания сменилась на «Design a scroll-stopping quote graphic for Instagram». Второй пример работы вместо повтора лица.</div>
+    </div>
+    <div class="shot">
+      <img src="media/frames/f31.0.jpg" alt="">
+      <div class="cap">0:31 — заставка «Episode 1. The Claude Social Media Series». Обещание серии закреплено оформленным титулом, как у сериала.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="34.5">0:34 — 0:42</a></span>
+    <span class="tag">Показ готовой работы</span>
+    <span class="rate">243 слова/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">Before I break anything down, let me show you exactly what we're making today. This was all made entirely with Claude and NanoBanana. My content, my brand, custom visuals.</div>
+      <div class="lit">Прежде чем я что-либо разберу, позвольте показать вам в точности, что мы делаем сегодня. Это всё было сделано целиком с помощью Claude и NanoBanana. Мой контент, мой бренд, индивидуальные визуалы.</div>
+      <div class="len">10,0 слов в предложении · 30 слов / 3 предложения</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский</div>
+      <div class="strong">
+        Сначала результат, разбор потом.
+        Вот что мы сделаем сегодня.
+        Всё, что сейчас на экране, собрано двумя программами.
+        Мой текст. Мой стиль. Картинки нарисованы под меня.
+      </div>
+      <div class="len">4,2 слова в предложении · 25 слов / 6 предложений</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media/frames/f36.7.jpg" alt="">
+      <div class="cap">0:36 — карточки выезжают одна за другой: «Your Audience Has AI Toxo», «The Algorithm Changed». Показан не один пост, а набор в одном стиле.</div>
+    </div>
+    <div class="shot">
+      <img src="media/frames/f41.5.jpg" alt="">
+      <div class="cap">0:41 — тот же набор целиком в кадре. Слова «мой стиль» подтверждены одинаковым оформлением всех карточек.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block" style="border-bottom:1px solid #e2e2e2">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="41.9">0:42 — 0:46,5 — граница</a></span>
+    <span class="tag">Переключатель и начало основной части</span>
+    <span class="rate">209 слов/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">And I'm going to show you every step, but first, we need to understand Claude. // Дальше, уже за границей: Before I show you anything, I need you to understand Claude, because this isn't just another AI tool. Let's break it down.</div>
+      <div class="lit">И я собираюсь показать вам каждый шаг, но сначала нам нужно разобраться в Claude. // Дальше: Прежде чем я вам что-то покажу, мне нужно, чтобы вы разобрались в Claude, потому что это не просто ещё один ИИ-инструмент. Давайте разложим.</div>
+      <div class="len">16,0 слов в предложении · 16 слов / 1 предложение</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский, дальше — что изменилось</div>
+      <div class="strong">
+        Покажу каждый шаг по порядку. Но сначала разберёмся, что такое Claude.
+        <ul>
+          <li>Обещания кончились, начался разбор устройства программы.</li>
+          <li>Дальше идут её три части: чат, работа с рабочим столом, работа в терминале — и по каждой примеры, что она умеет.</li>
+        </ul>
+      </div>
+      <div class="len">5,5 слова в предложении · 11 слов / 2 предложения</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media/frames/f49.0.jpg" alt="">
+      <div class="cap">0:49 — тот же план, что и на 0:43: с 0:43,5 до 0:56 нет ни одной склейки. Тринадцать секунд статики после монтажа по 4 секунды.</div>
+    </div>
+    <div class="shot">
+      <img src="media/frames/f56.0.jpg" alt="">
+      <div class="cap">0:56 — первая запись экрана после интро: окно программы Claude. Началась основная часть.</div>
+    </div>
+  </div>
+</div>
+
+<h2 class="sec">5. Пост — весь заход связным текстом</h2>
+<div class="post">
+  <h3>Я перестал заказывать картинки для соцсетей. Их делают две программы</h3>
+
+  <p>Картинки для соцсетей я больше не заказываю. Ни дизайнеру, ни в редакторе Canva.
+  Их делают две программы: Claude и Nano Banana.</p>
+
+  <p>Посты выходят такие, что собирают тысячи лайков. Раз за разом. На один пост
+  уходят минуты, а не часы.</p>
+
+  <p>Десять лет я делаю контент за деньги. За это время поднял несколько брендов в соцсетях.
+  Теперь беру для этого ИИ. Каждый день. Собираю на нём схемы работы, которые не рассыпаются.</p>
+
+  <p>Сегодня показываю сам ход. Целиком, без пропусков. Как я беру свой уже готовый материал.
+  Как из него получаются посты для соцсетей. И почему эти посты не похожи ни на что вокруг.</p>
+
+  <p class="kick">Это первый выпуск. Дальше будет серия. В ней я соберу всю работу
+  с соцсетями на ИИ целиком.</p>
+
+  <p>Сначала результат, разбор потом. Вот что мы сделаем сегодня. Всё, что сейчас на экране,
+  собрано двумя программами. Мой текст. Мой стиль. Картинки нарисованы под меня.</p>
+
+  <p>Покажу каждый шаг по порядку. Но сначала разберёмся, что такое Claude.</p>
+</div>
+
+<h2 class="sec">6. Тезисы пулями</h2>
+<div class="bul">
+  <div class="item">
+    <div class="b">Дизайнер и редактор картинок больше не нужны</div>
+    <div class="s">Ни человека на подряде, ни ручной сборки макетов в Canva — всё делают две программы.</div>
+  </div>
+  <div class="item">
+    <div class="b">Посты собирают тысячи лайков — и не один раз, а раз за разом</div>
+    <div class="s">Повторяемость названа отдельно: это не единичная удача.</div>
+  </div>
+  <div class="item">
+    <div class="b">На один пост уходят минуты вместо часов</div>
+    <div class="s">Обмен назван прямо: то же самое время, но в другой единице измерения.</div>
+  </div>
+  <div class="item">
+    <div class="b">За автором десять лет платной работы с контентом</div>
+    <div class="s">И несколько поднятых брендов в соцсетях — на экране счётчик страницы с 1,8 млн подписчиков.</div>
+  </div>
+  <div class="item">
+    <div class="b">Исходник для постов — свой уже готовый материал</div>
+    <div class="s">Ничего не сочиняется с нуля: берётся то, что автор уже написал и снял.</div>
+  </div>
+  <div class="item">
+    <div class="b">Готовые посты показаны до объяснений</div>
+    <div class="s">Сначала результат на экране, разбор шагов — после него.</div>
+  </div>
+  <div class="item">
+    <div class="b">Это первый выпуск серии</div>
+    <div class="s">Дальше собирается вся работа с соцсетями на ИИ целиком.</div>
+  </div>
+</div>
+
+<h2 class="sec">7. Что видно по картинке</h2>
+<div class="note">
+  <ul>
+    <li><b>Лицо автора появляется только на 12-й секунде.</b> Первые одиннадцать секунд —
+    чужие и свои посты в ленте с видимыми счётчиками лайков. Зритель сначала видит,
+    ради чего смотреть, и только потом — кто говорит.</li>
+    <li><b>Регалия написана буквами.</b> На 0:13 поверх кадра титр «Spent over 10 years
+    in content marketing». То же самое произносится голосом — цифра заходит дважды.</li>
+    <li><b>«Несколько брендов» подтверждены счётчиком.</b> На 0:16 в кадре страница
+    с 1,8 млн подписчиков и 927 постами. Расплывчатое слово получило размер.</li>
+    <li><b>Работа показана в момент, когда о ней говорят.</b> На 0:18 и 0:26 в кадре
+    набирается строка задания программе. Текст задания меняется — видно, что примеров несколько.</li>
+    <li><b>Заставка серии оформлена как титул сериала.</b> На 0:31 «Episode 1. The Claude
+    Social Media Series». Обещание продолжения закреплено картинкой, а не только словом.</li>
+    <li><b>Единство стиля показано набором, а не одним постом.</b> На 0:36–0:43 карточки
+    выезжают одна за другой и остаются в кадре вместе. Слова «мой стиль» проверяемы глазами.</li>
+    <li><b>Монтаж останавливается ровно на границе.</b> До 0:43,5 склейка каждые 4 секунды,
+    с 0:43,5 до 0:56 — ни одной. Тринадцать секунд статики отделяют интро от разбора.</li>
+    <li><b>Говорящая голова занимает меньше трети интро.</b> Из двенадцати планов
+    восемь — записи экрана, ленты постов и заставки.</li>
+  </ul>
+</div>
+
+<h2 class="sec">8. Что заменено в русской версии и почему</h2>
+<div class="note">
+  <ul>
+    <li><b>«have just changed how I make social media content»</b> → «Картинки для соцсетей
+    я больше не заказываю». Отвлечённое «изменили то, как я делаю» заменено конкретным
+    действием, которое пропало из жизни автора.</li>
+    <li><b>«Two AI tools»</b> → «две программы: Claude и Nano Banana». Термин «ИИ-инструмент»
+    ничего не показывает; «программа» с именами — показывает.</li>
+    <li><b>«the results are insane»</b> → вырезано, вместо оценки оставлены факты:
+    тысячи лайков и минуты вместо часов. «Безумные результаты» увидеть нельзя.</li>
+    <li><b>«time and time again»</b> → «Раз за разом» отдельным предложением.
+    Повторяемость — самостоятельный аргумент, в хвосте длинной фразы он терялся.</li>
+    <li><b>«systems that actually work»</b> → «схемы работы, которые не рассыпаются».
+    «Системы, которые действительно работают» — оценка; «не рассыпаются» — проверяемое свойство.</li>
+    <li><b>«turn my own content into social media posts» внутри фразы на 33 слова</b>
+    → три коротких предложения: беру готовый материал / получаются посты / не похожи
+    ни на что вокруг. Ход автора сохранён, длина предложения упала втрое.</li>
+    <li><b>«the ultimate AI social media system»</b> → «всю работу с соцсетями на ИИ целиком».
+    Превосходная степень «окончательная система» заменена описанием охвата.</li>
+    <li><b>«custom visuals»</b> → «Картинки нарисованы под меня». Калька «кастомные визуалы»
+    убрана, оставлено действие.</li>
+    <li><b>«Before I break anything down»</b> → «Сначала результат, разбор потом».
+    Придаточное превращено в короткое утверждение о порядке.</li>
+  </ul>
+</div>
+<p class="note" style="margin-top:14px">
+Средняя длина предложения упала во всех блоках: с 10,0–33,0 слова до 4,2–6,5.
+По всему интро: <b>15,4 слова у автора против 5,7 в пересказе</b> — почти втрое короче.
+Объём содержания не срезан: 169 слов оригинала против 153 в русской версии, это 91%.
+Цепочка ходов не менялась — результат, отрицание привычного пути, доказательство лайками,
+обмен времени, регалии, опись содержимого, заявка на серию, показ работы остались на своих местах.
+</p>
+
+<script>
+  var v = document.getElementById('v');
+  document.querySelectorAll('.tc a[data-t]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      v.currentTime = parseFloat(a.dataset.t);
+      v.play();
+      v.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+</script>
+</div>
+</body>
+</html>
