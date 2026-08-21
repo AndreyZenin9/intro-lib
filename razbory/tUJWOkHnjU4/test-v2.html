@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Разбор интро — Greg Hickman, «Как перестать делать каждому клиенту своё»</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 52px 40px 120px;
+  background: #ffffff; color: #111;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1560px; margin: 0 auto; }
+h1 { font-size: 31px; line-height: 1.15; margin: 0 0 12px; font-weight: 700; }
+.lead { color: #555; font-size: 15px; line-height: 1.55; max-width: 940px; }
+h2.sec { font-size: 13px; text-transform: uppercase; letter-spacing: .1em;
+         color: #888; font-weight: 700; margin: 48px 0 16px; }
+.btn { display: inline-block; border: 1px solid #ddd; background: #fafafa; border-radius: 8px;
+       padding: 9px 16px; font-size: 14px; color: #111; text-decoration: none; }
+
+.player { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; margin-top: 8px; }
+.player video { width: 100%; max-width: 760px; border-radius: 10px; border: 1px solid #d8d8d8; display: block; }
+.player .side { flex: 1 1 300px; min-width: 280px; }
+.player audio { width: 100%; margin-top: 14px; }
+
+.pass { display: flex; flex-wrap: wrap; gap: 12px; }
+.pass .m { flex: 1 1 150px; border: 1px solid #e2e2e2; border-radius: 10px; padding: 14px 16px; }
+.pass .m .v { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pass .m .k { font-size: 12px; color: #888; margin-top: 5px; }
+.pass .m .n { font-size: 11.5px; color: #b8360f; margin-top: 6px; }
+
+.chain { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chain .s { border: 1px solid #ddd; border-radius: 20px; padding: 7px 15px; font-size: 13.5px; background: #fafafa; }
+.chain .ar { color: #bbb; font-size: 15px; }
+
+.block { padding: 32px 0 38px; border-top: 1px solid #e2e2e2; }
+.meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; }
+.tc { font-size: 12px; font-weight: 700; letter-spacing: .07em; color: #999; font-variant-numeric: tabular-nums; }
+.tc a { color: #b8360f; text-decoration: none; border-bottom: 1px dotted #d8a08c; }
+.tag { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; font-weight: 700;
+       color: #b8360f; background: #fdece5; border: 1px solid #f2c4b0; border-radius: 4px; padding: 3px 9px; }
+.rate { font-size: 12px; color: #888; font-variant-numeric: tabular-nums; }
+
+.three { display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+         border: 1px solid #e2e2e2; border-radius: 12px; overflow: hidden; }
+.three > div { padding: 20px 24px 22px; }
+.three .src { background: #fbfbfb; border-right: 1px solid #e2e2e2; }
+.three .rus { background: #fff; }
+.hdr { font-size: 10.5px; text-transform: uppercase; letter-spacing: .09em; font-weight: 700; margin-bottom: 12px; }
+.src .hdr { color: #999; }
+.rus .hdr { color: #b8360f; }
+.en { font-size: 14px; line-height: 1.5; color: #8a8a8a; font-style: italic; margin-bottom: 14px; }
+.lit { font-size: 16px; line-height: 1.5; color: #444; }
+.strong { font-size: 18.5px; line-height: 1.5; color: #000; font-weight: 450; }
+.strong ul { margin: 12px 0 0; padding-left: 0; list-style: none; }
+.strong li { font-size: 17px; line-height: 1.45; margin: 0 0 10px; padding-left: 22px; position: relative; }
+.strong li::before { content: "—"; position: absolute; left: 0; color: #b8360f; font-weight: 700; }
+.len { font-size: 11.5px; color: #aaa; margin-top: 14px; font-variant-numeric: tabular-nums; }
+.rus .len { color: #b8360f; }
+
+.strip { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; margin-top: 22px; }
+.shot { flex: 1 1 0; min-width: 340px; max-width: 740px; }
+.shot img { width: 100%; display: block; border-radius: 10px; border: 1px solid #d8d8d8; }
+.shot .cap { font-size: 12.5px; color: #888; margin-top: 8px; line-height: 1.45; }
+
+.note { background: #fafafa; border: 1px solid #e2e2e2; border-radius: 10px; padding: 16px 20px;
+        font-size: 14px; line-height: 1.6; color: #444; max-width: 1100px; }
+.note ul { margin: 10px 0 0; padding-left: 20px; }
+.note li { margin-bottom: 7px; }
+.warn { background: #fdece5; border-color: #f2c4b0; color: #7a2c10; }
+
+.post { border: 2px solid #111; border-radius: 12px; padding: 34px 38px 30px; max-width: 800px; }
+.post h3 { font-size: 26px; line-height: 1.28; margin: 0 0 22px; font-weight: 700; }
+.post p { font-size: 17.5px; line-height: 1.6; margin: 0 0 17px; }
+.post ul { margin: 4px 0 18px; padding-left: 0; list-style: none; }
+.post li { font-size: 17px; line-height: 1.48; margin: 0 0 11px; padding-left: 24px; position: relative; }
+.post li::before { content: "—"; position: absolute; left: 0; color: #b8360f; font-weight: 700; }
+.post .kick { font-size: 20px; line-height: 1.42; font-weight: 600; margin: 24px 0 18px; }
+
+.bul .item { border-top: 1px solid #e2e2e2; padding: 18px 0 16px; max-width: 860px; }
+.bul .item:last-child { border-bottom: 1px solid #e2e2e2; }
+.bul .b { font-size: 19px; line-height: 1.38; font-weight: 600; }
+.bul .s { font-size: 14.5px; line-height: 1.55; color: #666; margin-top: 7px; }
+
+@media (max-width: 900px) {
+  body { padding: 30px 16px 80px; }
+  h1 { font-size: 24px; }
+  .three { grid-template-columns: 1fr; }
+  .three .src { border-right: none; border-bottom: 1px solid #e2e2e2; }
+  .shot { min-width: 100%; }
+  .post { padding: 24px 20px 22px; }
+  .post h3 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Разбор интро: Greg Hickman, «Как перестать делать каждому клиенту своё»</h1>
+<p class="lead">
+Автор — Грег Хикман, ведёт англоязычный YouTube-канал для тех, кто продаёт свои услуги
+компаниям: консультантов, агентств, специалистов по настройке программ. Ролик про то,
+как перестать собирать работу заново под каждого клиента и начать продавать одно и то же
+как готовый продукт с фиксированной ценой. Разбирается только интро — первый блок,
+где автор ещё не учит, а удерживает зрителя.
+</p>
+<p class="lead" style="margin-top:14px">
+<b>Граница интро — 0:53.</b> Три признака совпали. Первый: на 0:53 звучит слово-переключатель
+«So, the first step is» — «итак, шаг первый». Второй: время глагола меняется с обещания
+(«here's the five steps» — «вот пять шагов») на действие («build your modular framework» —
+«соберите свою схему из частей»). Третий: на 0:55 экран впервые за минуту меняется целиком —
+появляется полноэкранная карточка «STEP 1». До этого за 53 секунды было всего две смены картинки.
+</p>
+<p class="lead" style="margin-top:14px">
+Ролик английский. В левой колонке два слоя: <b>оригинал</b> мелкой строкой и <b>дословный
+перевод</b> под ним. В правой — <b>сильный русский</b>: тот же ход автора, пересказанный так,
+как он работал бы в посте. Ничего не добавлено — только переформулировано.
+</p>
+
+<h2 class="sec">1. Источник</h2>
+<div class="player">
+  <video id="v" controls preload="metadata" src="media2/fragment.mp4"></video>
+  <div class="side">
+    <a class="btn" href="https://youtu.be/tUJWOkHnjU4" target="_blank" rel="noopener">Открыть на YouTube</a>
+    <audio controls preload="metadata" src="media2/fragment.mp3"></audio>
+    <p style="font-size:13px;color:#888;line-height:1.5;margin-top:14px">
+      Фрагмент — первые две минуты ролика, интро занимает 53 секунды.
+      Таймкоды в разборе кликабельны: перематывают плеер.
+    </p>
+  </div>
+</div>
+
+<h2 class="sec">2. Паспорт интро</h2>
+<div class="pass">
+  <div class="m"><div class="v">0:53</div><div class="k">длина интро</div><div class="n">весь ролик — 16 минут</div></div>
+  <div class="m"><div class="v">3</div><div class="k">смены картинки</div><div class="n">на 1,4 с, 23,1 с и 54,9 с</div></div>
+  <div class="m"><div class="v">17,8 с</div><div class="k">средний план</div><div class="n">в плотных интро 2–4 с — здесь в пять раз спокойнее</div></div>
+  <div class="m"><div class="v">191</div><div class="k">слово в минуту</div><div class="n">у англоязычных ютуберов 180–200 — по верхней границе нормы</div></div>
+  <div class="m"><div class="v">170</div><div class="k">слов всего</div><div class="n">за 53 секунды</div></div>
+  <div class="m"><div class="v">4</div><div class="k">мысли</div><div class="n">законченных смысловых блока</div></div>
+  <div class="m"><div class="v">23 с</div><div class="k">рисованная схема</div><div class="n">почти половина интро — анимация, а не лицо</div></div>
+</div>
+<p class="note warn" style="margin-top:16px">
+<b>Главное в цифрах: 191 слово в минуту при трёх сменах картинки за 53 секунды.</b>
+Внимание держится не монтажом, а речью — автор говорит быстро и без пауз.
+Картинку меняют всего дважды: с рисованной схемы на говорящую голову и обратно на карточку шага.
+Первые 23 секунды зритель вообще не видит автора — только линию, которая на глазах запутывается в узел.
+</p>
+
+<h2 class="sec">3. Цепочка ходов</h2>
+<div class="chain">
+  <span class="s">Боль зрителя вместо приветствия</span><span class="ar">→</span>
+  <span class="s">Цепочка последствий</span><span class="ar">→</span>
+  <span class="s">Клиент, который думал так же</span><span class="ar">→</span>
+  <span class="s">Он уже всё сделал — и всё равно не вышло</span><span class="ar">→</span>
+  <span class="s">Главная мысль одной фразой</span><span class="ar">→</span>
+  <span class="s">Обещание: пять шагов</span><span class="ar">→</span>
+  <span class="s">Карточка первого шага</span>
+</div>
+<p class="note" style="margin-top:16px">
+Три особенности этого захода. <b>Первое: нет ни приветствия, ни имени, ни регалий.</b>
+Ролик начинается словами «So, here's the problem» — «итак, вот в чём беда».
+Автор появляется в кадре только на 23-й секунде, когда зритель уже согласился с болью.
+<b>Второе: доказательство идёт через чужую историю, а не через свои цифры.</b>
+Вместо «у меня столько-то клиентов» — конкретный человек по имени Лен и его конкретная работа.
+<b>Третье: приём «он уже сделал всё правильно».</b> Лен разложил работу по схемам —
+и всё равно упёрся. Значит, дело не в лени зрителя, а в устройстве задачи.
+</p>
+
+<h2 class="sec">4. Разбор по мыслям</h2>
+
+<div class="block">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="0.2">0:00 — 0:19</a></span>
+    <span class="tag">Боль зрителя вместо приветствия</span>
+    <span class="rate">178 слов/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">So, here's the problem. You probably think that custom delivery is unavoidable because every client probably feels a little bit different. So, that means every engagement starts from scratch. You scope projects, which that turns into a whole time suck, and then you don't actually proactively market yourself because you can't name one specific outcome that you always deliver.</div>
+      <div class="lit">Итак, вот в чём беда. Вы, наверное, думаете, что делать каждому своё — неизбежно, потому что каждый клиент вроде бы немного другой. А значит, каждая работа начинается с нуля. Вы оцениваете объём проектов, и это превращается в сплошную трату времени, а потом вы не занимаетесь продвижением себя, потому что не можете назвать один конкретный результат, который вы выдаёте всегда.</div>
+      <div class="len">14,8 слова в предложении · 59 слов / 4 предложения</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский</div>
+      <div class="strong">
+        Клиент приходит — и вы считаете часы заново под его задачу.
+        Кажется, иначе нельзя: у каждого свои особенности.
+        Дальше всё идёт по кругу.
+        <ul>
+          <li>Каждый проект начинается с чистого листа.</li>
+          <li>Вы расписываете объём работ. Эти дни никто не оплачивает.</li>
+          <li>На рекламу себя времени уже не остаётся.</li>
+          <li>Сказать нечего: одного результата, который вы выдаёте всегда, у вас нет.</li>
+        </ul>
+      </div>
+      <div class="len">5,6 слова в предложении · 56 слов / 10 предложений</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media2/frames/f3.jpg" alt="">
+      <div class="cap">0:03 — заход открывается не лицом, а рисунком: одна мысль на пустом экране, дальше линия достраивается по ходу речи.</div>
+    </div>
+    <div class="shot">
+      <img src="media2/frames/f21.jpg" alt="">
+      <div class="cap">0:21 — приём «узел»: к концу блока линия физически запутывается, а подпись подводит итог за зрителя.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="19.9">0:19 — 0:35</a></span>
+    <span class="tag">Клиент, который думал так же</span>
+    <span class="rate">189 слов/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">Now, my client Len, he thought the exact same thing. He came to us and he was looking to productize his Zoho CRM implementation work. Now, he mapped everything he has done with his clients in repeatable frameworks, but he was still convinced that each client needed something different.</div>
+      <div class="lit">Так вот, мой клиент Лен думал ровно то же самое. Он пришёл к нам, желая превратить в продукт свою работу по внедрению Zoho CRM. И он расписал всё, что делал с клиентами, в повторяемые схемы, но всё равно был убеждён, что каждому клиенту нужно что-то своё.</div>
+      <div class="len">16,3 слова в предложении · 49 слов / 3 предложения</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский</div>
+      <div class="strong">
+        Мой клиент Лен думал так же.
+        Он настраивает компаниям систему учёта клиентов и сделок — Zoho.
+        Пришёл к нам за одним. Превратить эту работу в продукт с фиксированной ценой.
+        Всё, что он делал у клиентов, он уже разложил по повторяемым схемам.
+        И всё равно был уверен: каждому нужно своё.
+      </div>
+      <div class="len">8,2 слова в предложении · 49 слов / 6 предложений</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media2/frames/f27.jpg" alt="">
+      <div class="cap">0:27 — автор впервые в кадре, на 23-й секунде: лицо появляется только после того, как зритель согласился с болью.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="35.5">0:35 — 0:47</a></span>
+    <span class="tag">Главная мысль одной фразой</span>
+    <span class="rate">206 слов/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">So, here's the big idea. It's not that what they want or what they need actually changed. It's just the order in which you need to deliver your skills and deliverables to get them to the outcome that they actually want.</div>
+      <div class="lit">Итак, вот главная идея. Дело не в том, что меняется то, чего они хотят, или то, что им нужно. Дело только в порядке, в котором вам нужно отдавать свои навыки и результаты работы, чтобы довести их до результата, которого они на самом деле хотят.</div>
+      <div class="len">13,7 слова в предложении · 41 слово / 3 предложения</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский</div>
+      <div class="strong">
+        Вот главная мысль.
+        То, что клиенты хотят, не меняется.
+        То, что им нужно, не меняется тоже.
+        Меняется один порядок.
+        Порядок, в котором вы отдаёте свои навыки и свои работы.
+        Порядок, который доводит человека до результата, за которым он пришёл.
+        Больше ничего перекраивать не нужно.
+      </div>
+      <div class="len">6,3 слова в предложении · 44 слова / 7 предложений</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media2/frames/f38.jpg" alt="">
+      <div class="cap">0:38 — на главной мысли картинка не меняется: ставка сделана на речь, темп поднимается до 206 слов в минуту.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="47.4">0:47 — 0:53</a></span>
+    <span class="tag">Обещание: пять шагов</span>
+    <span class="rate">209 слов/мин</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">So, here's the five steps to give your clients a customized experience while still productizing every single thing that you do.</div>
+      <div class="lit">Итак, вот пять шагов, чтобы дать клиентам ощущение работы под них, при этом превратив в продукт всё до единого, что вы делаете.</div>
+      <div class="len">21,0 слова в предложении · 21 слово / 1 предложение</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Сильный русский</div>
+      <div class="strong">
+        Дальше — пять шагов.
+        Клиент получает работу под себя.
+        Вы при этом продаёте один готовый продукт.
+        Каждое ваше действие собрано заранее.
+      </div>
+      <div class="len">5,2 слова в предложении · 21 слово / 4 предложения</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media2/frames/f50.jpg" alt="">
+      <div class="cap">0:50 — обещание проговаривается в кадре без графики: список шагов не показан, его придётся досмотреть.</div>
+    </div>
+  </div>
+</div>
+
+<div class="block" style="border-bottom:1px solid #e2e2e2">
+  <div class="meta">
+    <span class="tc"><a href="#" data-t="53.4">0:53 — граница</a></span>
+    <span class="tag">Начало основной части</span>
+  </div>
+  <div class="three">
+    <div class="src">
+      <div class="hdr">Оригинал и дословный перевод</div>
+      <div class="en">So, the first step is to build your modular framework.</div>
+      <div class="lit">Итак, первый шаг — собрать вашу схему из частей.</div>
+      <div class="len">—</div>
+    </div>
+    <div class="rus">
+      <div class="hdr">Что изменилось</div>
+      <div class="strong">
+        Обещания кончились, начался первый шаг.
+        Дальше пойдёт разбор: что вытащить из головы, как это записать, кто по этому работает.
+      </div>
+      <div class="len">—</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="shot">
+      <img src="media2/frames/f56.jpg" alt="">
+      <div class="cap">0:56 — полноэкранная карточка шага: первая за 53 секунды полная смена картинки, она же метка границы интро.</div>
+    </div>
+  </div>
+</div>
+
+<h2 class="sec">5. Пост — весь заход связным текстом</h2>
+<div class="post">
+  <h3>Каждому клиенту вы собираете работу заново. Меняется не работа, а порядок</h3>
+
+  <p>Клиент приходит — и вы считаете часы заново под его задачу.
+  Кажется, иначе нельзя: у каждого свои особенности. Дальше всё идёт по кругу.</p>
+  <ul>
+    <li>Каждый проект начинается с чистого листа.</li>
+    <li>Вы расписываете объём работ. Эти дни никто не оплачивает.</li>
+    <li>На рекламу себя времени уже не остаётся.</li>
+    <li>Сказать нечего: одного результата, который вы выдаёте всегда, у вас нет.</li>
+  </ul>
+
+  <p>Мой клиент Лен думал так же. Он настраивает компаниям систему учёта клиентов
+  и сделок — Zoho. Пришёл к нам за одним. Превратить эту работу в продукт
+  с фиксированной ценой. Всё, что он делал у клиентов, он уже разложил
+  по повторяемым схемам. И всё равно был уверен: каждому нужно своё.</p>
+
+  <p class="kick">Вот главная мысль. То, что клиенты хотят, не меняется.
+  То, что им нужно, не меняется тоже. Меняется один порядок.</p>
+
+  <p>Порядок, в котором вы отдаёте свои навыки и свои работы. Порядок, который доводит
+  человека до результата, за которым он пришёл. Больше ничего перекраивать не нужно.</p>
+
+  <p>Дальше — пять шагов. Клиент получает работу под себя. Вы при этом продаёте
+  один готовый продукт. Каждое ваше действие собрано заранее.</p>
+</div>
+
+<h2 class="sec">6. Тезисы пулями</h2>
+<div class="bul">
+  <div class="item">
+    <div class="b">Работа под каждого клиента кажется неизбежной</div>
+    <div class="s">Причина одна: каждый клиент выглядит немного другим, чем предыдущий.</div>
+  </div>
+  <div class="item">
+    <div class="b">Из-за этого каждый проект начинается с чистого листа</div>
+    <div class="s">Расчёт объёма работ съедает дни, которые никто не оплачивает.</div>
+  </div>
+  <div class="item">
+    <div class="b">На продвижение себя времени не остаётся</div>
+    <div class="s">И сказать нечего: одного результата, который выдаётся всегда, назвать не получается.</div>
+  </div>
+  <div class="item">
+    <div class="b">Расписать работу по схемам — ещё не решение</div>
+    <div class="s">Клиент по имени Лен разложил всё, что делал, по повторяемым схемам и всё равно упёрся.</div>
+  </div>
+  <div class="item">
+    <div class="b">То, чего клиенты хотят, у всех одинаковое</div>
+    <div class="s">Меняется только порядок, в котором вы отдаёте им свои навыки и работы.</div>
+  </div>
+  <div class="item">
+    <div class="b">Ощущение работы под себя и готовый продукт совместимы</div>
+    <div class="s">Автор обещает показать это за пять шагов.</div>
+  </div>
+</div>
+
+<h2 class="sec">7. Что видно по картинке</h2>
+<div class="note">
+  <ul>
+    <li><b>Автора нет в кадре первые 23 секунды.</b> Вместо лица — рисованная линия, которая
+    достраивается по ходу речи. Знакомство отложено до момента, когда зритель уже кивнул.</li>
+    <li><b>Схема рисуется, а не показывается готовой.</b> На 0:03 на экране одна мысль,
+    на 0:14 — три, на 0:21 — четыре и запутанный узел. Картинка идёт след в след за речью.</li>
+    <li><b>Подпись на экране договаривает за зрителя.</b> «So it all knots up — and custom feels
+    unavoidable» — «всё запутывается, и работа под каждого кажется неизбежной».
+    Вывод написан буквой, а не оставлен на догадку.</li>
+    <li><b>Монтажа почти нет.</b> Три смены картинки за 53 секунды, средний план 17,8 секунды.
+    Внимание держит темп речи — 191 слово в минуту, верхняя граница нормы для англоязычных
+    ютуберов (180–200).</li>
+    <li><b>Граница интро помечена и словом, и картинкой одновременно.</b> «Первый шаг» в речи
+    на 0:53 и полноэкранная карточка «STEP 1» на 0:55. Зритель не может пропустить переход.</li>
+  </ul>
+</div>
+
+<h2 class="sec">8. Что заменено в русской версии и почему</h2>
+<div class="note">
+  <ul>
+    <li><b>«custom delivery is unavoidable» — «делать каждому своё неизбежно»</b> →
+    «Клиент приходит — и вы считаете часы заново под его задачу». Отвлечённое понятие
+    заменено сценой из дня читателя, с которой начинается текст.</li>
+    <li><b>«turns into a whole time suck» — «превращается в сплошную трату времени»</b> →
+    «Эти дни никто не оплачивает». Оценка заменена фактом: названо, что именно теряется.</li>
+    <li><b>«productize his work» — «превратить работу в продукт»</b> →
+    «Превратить эту работу в продукт с фиксированной ценой». «Упаковать в продукт»
+    нельзя увидеть, «продукт с фиксированной ценой» можно.</li>
+    <li><b>«Zoho CRM implementation work» — «работа по внедрению Zoho CRM»</b> →
+    «Он настраивает компаниям систему учёта клиентов и сделок — Zoho». Название чужой
+    программы расшифровано тем, что она делает.</li>
+    <li><b>«give your clients a customized experience» — «дать клиентам ощущение работы под них»</b> →
+    «Клиент получает работу под себя». Калька с английского заменена русской фразой.</li>
+    <li><b>Одно предложение на 21 слово в блоке про пять шагов</b> → четыре коротких.
+    Обещание распалось на «что получит клиент» и «что получите вы».</li>
+    <li><b>Перечисление последствий внутри одной фразы на 59 слов</b> → четыре пули.
+    Каждую можно прочитать отдельно от соседних и понять.</li>
+  </ul>
+</div>
+<p class="note" style="margin-top:14px">
+Средняя длина предложения упала во всех четырёх блоках: с 13,7–21,0 слова до 5,2–8,2.
+Объём содержания не срезан: 170 слов в оригинале и 170 слов в пересказе.
+Цепочка ходов автора не менялась — боль, последствия, история клиента, главная мысль,
+обещание пяти шагов остались на своих местах и в том же порядке.
+</p>
+
+<script>
+  var v = document.getElementById('v');
+  document.querySelectorAll('.tc a[data-t]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      v.currentTime = parseFloat(a.dataset.t);
+      v.play();
+      v.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+</script>
+</div>
+</body>
+</html>
